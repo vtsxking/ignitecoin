@@ -23,7 +23,7 @@ packages:
 - "python"
 - "rename"
 remotes:
-- "url": "https://github.com/ignitecoin-project/ignitecoin.git"
+- "url": "https://github.com/vtsxking/ignitecoin.git"
   "dir": "ignitecoin"
 files: []
 script: |
