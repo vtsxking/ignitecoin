@@ -125,9 +125,9 @@ public:
         	143.198.77.205:7187
         	143.198.71.203:7187
         */
-        vSeeds.emplace_back("143.198.78.181");
-        vSeeds.emplace_back("143.198.77.205");
-        vSeeds.emplace_back("143.198.71.203");
+        vSeeds.emplace_back("10.124.0.4");
+        vSeeds.emplace_back("10.124.0.3");
+        vSeeds.emplace_back("10.124.0.2");
         //vSeeds.emplace_back("dnsseed.ignitecoinpool.org");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,70); // 70 = V
