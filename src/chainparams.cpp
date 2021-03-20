@@ -120,9 +120,14 @@ public:
         // This is fine at runtime as we'll fall back to using them as a oneshot if they don't support the
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
-        //vSeeds.emplace_back("seed-a.ignitecoin.loshan.co.uk");
-        //vSeeds.emplace_back("dnsseed.thrasher.io");
-        //vSeeds.emplace_back("dnsseed.ignitecointools.com");
+        /*
+        	143.198.78.181:7187
+        	143.198.77.205:7187
+        	143.198.71.203:7187
+        */
+        vSeeds.emplace_back("143.198.78.181");
+        vSeeds.emplace_back("143.198.77.205");
+        vSeeds.emplace_back("143.198.71.203");
         //vSeeds.emplace_back("dnsseed.ignitecoinpool.org");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,70); // 70 = V
