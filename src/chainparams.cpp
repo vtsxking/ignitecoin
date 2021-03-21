@@ -147,7 +147,7 @@ public:
 
         checkpointData = {
             {
-                {0,0},
+                {  0, uint256S("0x0")},
             }
         };
 
