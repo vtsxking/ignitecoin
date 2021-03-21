@@ -91,7 +91,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1517356801; // January 31st, 2018
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
+        consensus.nMinimumChainWork = uint256S("0x0");
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0xf086349d4e62e82a2961aea06011c8572670e382bd83269f91dee8e67e1ed9ef"); //0
@@ -110,7 +110,7 @@ public:
         m_assumed_blockchain_size = 1;
         m_assumed_chain_state_size = 1;
 
-        genesis = CreateGenesisBlock(1615955098, 2084524493, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1615955098, 2084625965, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0xf086349d4e62e82a2961aea06011c8572670e382bd83269f91dee8e67e1ed9ef"));
         assert(genesis.hashMerkleRoot == uint256S("0xbc6bf0ed3bbb0a453b46f5b40b861d011a62706d231c50003bc78ad650e6ba44"));
@@ -147,8 +147,7 @@ public:
 
         checkpointData = {
             {
-                {  0, uint256S("0xf086349d4e62e82a2961aea06011c8572670e382bd83269f91dee8e67e1ed9ef")},
-            }
+                {  }
         };
 
         chainTxData = ChainTxData{
