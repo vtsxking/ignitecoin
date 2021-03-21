@@ -147,7 +147,8 @@ public:
 
         checkpointData = {
             {
-                {  }
+                {0,0},
+            }
         };
 
         chainTxData = ChainTxData{
