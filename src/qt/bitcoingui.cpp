@@ -977,7 +977,8 @@ void BitcoinGUI::setNumBlocks(int count, const QDateTime& blockDate, double nVer
     QString tooltip;
 
     QDateTime currentDate = QDateTime::currentDateTime();
-    qint64 secs = blockDate.secsTo(currentDate);
+    //qint64 secs = blockDate.secsTo(currentDate); // to be uncomment after 2000 blocks...
+    qint64 secs = 0;
 
     tooltip = tr("Processed %n block(s) of transaction history.", "", count);
 
