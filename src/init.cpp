@@ -555,7 +555,7 @@ void SetupServerArgs()
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/ignitecoin-project/ignitecoin>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/vtsxking/ignitecoin>";
     const std::string URL_WEBSITE = "<https://ignitecoin.org>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2011, COPYRIGHT_YEAR) + " ") + "\n" +
