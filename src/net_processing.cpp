@@ -60,7 +60,7 @@ static constexpr int64_t MINIMUM_CONNECT_TIME = 30;
 static constexpr uint64_t RANDOMIZER_ID_ADDRESS_RELAY = 0x3cac0035b5866b90ULL;
 /// Age after which a stale block will no longer be served if requested as
 /// protection against fingerprinting. Set to one month, denominated in seconds.
-static constexpr int STALE_RELAY_AGE_LIMIT = 30 * 24 * 60 * 60 * 3650; // * 36500 is meant to keep the nodes from stalling, uncomment after 2000 blocks...
+static constexpr int STALE_RELAY_AGE_LIMIT = 30 * 24 * 60 * 60 * 365; // * 365 is meant to keep the nodes from stalling, uncomment after 2000 blocks...
 /// Age after which a block is considered historical for purposes of rate
 /// limiting block relay. Set to one week, denominated in seconds.
 static constexpr int HISTORICAL_BLOCK_AGE = 7 * 24 * 60 * 60;
