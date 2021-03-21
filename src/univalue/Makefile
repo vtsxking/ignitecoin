@@ -213,7 +213,7 @@ am__depfiles_remade = lib/$(DEPDIR)/libunivalue_la-univalue.Plo \
 am__mv = mv -f
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
-IGNCXXCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
+LTCXXCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) \
 	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
 	$(AM_CXXFLAGS) $(CXXFLAGS)
@@ -880,11 +880,11 @@ am--depfiles: $(am__depfiles_remade)
 
 .cpp.lo:
 	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
-	$(IGNCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
 	$(am__mv) $$depbase.Tpo $$depbase.Plo
 #	$(AM_V_CXX)source='$<' object='$@' libtool=yes \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(IGNCXXCOMPILE) -c -o $@ $<
+#	$(AM_V_CXX_no)$(LTCXXCOMPILE) -c -o $@ $<
 
 lib/libunivalue_la-univalue.lo: lib/univalue.cpp
 	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libunivalue_la_CXXFLAGS) $(CXXFLAGS) -MT lib/libunivalue_la-univalue.lo -MD -MP -MF lib/$(DEPDIR)/libunivalue_la-univalue.Tpo -c -o lib/libunivalue_la-univalue.lo `test -f 'lib/univalue.cpp' || echo '$(srcdir)/'`lib/univalue.cpp

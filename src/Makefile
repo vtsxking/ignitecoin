@@ -855,13 +855,14 @@ am__qt_libbitcoinqt_a_SOURCES_DIST = qt/bantablemodel.cpp \
 	qt/res/icons/fontsmaller.png qt/res/icons/hd_disabled.png \
 	qt/res/icons/hd_enabled.png qt/res/icons/history.png \
 	qt/res/icons/info.png qt/res/icons/key.png \
-	qt/res/icons/ignitecoin_splash.png qt/res/icons/lock_closed.png \
-	qt/res/icons/lock_open.png qt/res/icons/network_disabled.png \
-	qt/res/icons/open.png qt/res/icons/overview.png \
-	qt/res/icons/proxy.png qt/res/icons/quit.png \
-	qt/res/icons/receive.png qt/res/icons/remove.png \
-	qt/res/icons/send.png qt/res/icons/synced.png \
-	qt/res/icons/transaction0.png qt/res/icons/transaction2.png \
+	qt/res/icons/ignitecoin_splash.png \
+	qt/res/icons/lock_closed.png qt/res/icons/lock_open.png \
+	qt/res/icons/network_disabled.png qt/res/icons/open.png \
+	qt/res/icons/overview.png qt/res/icons/proxy.png \
+	qt/res/icons/quit.png qt/res/icons/receive.png \
+	qt/res/icons/remove.png qt/res/icons/send.png \
+	qt/res/icons/synced.png qt/res/icons/transaction0.png \
+	qt/res/icons/transaction2.png \
 	qt/res/icons/transaction_abandoned.png \
 	qt/res/icons/transaction_conflicted.png \
 	qt/res/icons/tx_inout.png qt/res/icons/tx_input.png \
@@ -1071,7 +1072,8 @@ am__bench_bench_ignitecoin_SOURCES_DIST = bench/data/block413567.raw \
 	bench/base58.cpp bench/bech32.cpp bench/lockedpool.cpp \
 	bench/prevector.cpp bench/coin_selection.cpp
 am__objects_25 = bench/bench_ignitecoin-coin_selection.$(OBJEXT)
-am_bench_bench_ignitecoin_OBJECTS = $(am__objects_4) \
+am_bench_bench_ignitecoin_OBJECTS =  \
+	$(am__objects_4) \
 	bench/bench_ignitecoin-bench_bitcoin.$(OBJEXT) \
 	bench/bench_ignitecoin-bench.$(OBJEXT) \
 	bench/bench_ignitecoin-block_assemble.$(OBJEXT) \
@@ -1125,26 +1127,28 @@ ignitecoin_cli_OBJECTS = $(am_ignitecoin_cli_OBJECTS)
 ignitecoin_cli_DEPENDENCIES = $(LIBBITCOIN_CLI) $(am__DEPENDENCIES_4) \
 	$(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
-ignitecoin_cli_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(ignitecoin_cli_CXXFLAGS) \
-	$(CXXFLAGS) $(ignitecoin_cli_LDFLAGS) $(LDFLAGS) -o $@
+ignitecoin_cli_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(ignitecoin_cli_CXXFLAGS) $(CXXFLAGS) \
+	$(ignitecoin_cli_LDFLAGS) $(LDFLAGS) -o $@
 am__ignitecoin_tx_SOURCES_DIST = bitcoin-tx.cpp bitcoin-tx-res.rc
 #am__objects_28 = bitcoin-tx-res.$(OBJEXT)
 am_ignitecoin_tx_OBJECTS = ignitecoin_tx-bitcoin-tx.$(OBJEXT) \
 	$(am__objects_28)
 ignitecoin_tx_OBJECTS = $(am_ignitecoin_tx_OBJECTS)
-ignitecoin_tx_DEPENDENCIES = $(am__DEPENDENCIES_4) $(LIBBITCOIN_COMMON) \
-	$(LIBBITCOIN_UTIL) $(LIBBITCOIN_CONSENSUS) \
-	$(LIBBITCOIN_CRYPTO) $(LIBSECP256K1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1)
-ignitecoin_tx_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(ignitecoin_tx_CXXFLAGS) \
-	$(CXXFLAGS) $(ignitecoin_tx_LDFLAGS) $(LDFLAGS) -o $@
+ignitecoin_tx_DEPENDENCIES = $(am__DEPENDENCIES_4) \
+	$(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) \
+	$(LIBBITCOIN_CONSENSUS) $(LIBBITCOIN_CRYPTO) $(LIBSECP256K1) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
+ignitecoin_tx_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(ignitecoin_tx_CXXFLAGS) $(CXXFLAGS) $(ignitecoin_tx_LDFLAGS) \
+	$(LDFLAGS) -o $@
 am__ignitecoin_wallet_SOURCES_DIST = bitcoin-wallet.cpp \
 	bitcoin-wallet-res.rc
 #am__objects_29 = bitcoin-wallet-res.$(OBJEXT)
-am_ignitecoin_wallet_OBJECTS = ignitecoin_wallet-bitcoin-wallet.$(OBJEXT) \
-	$(am__objects_29)
+am_ignitecoin_wallet_OBJECTS =  \
+	ignitecoin_wallet-bitcoin-wallet.$(OBJEXT) $(am__objects_29)
 ignitecoin_wallet_OBJECTS = $(am_ignitecoin_wallet_OBJECTS)
 ignitecoin_wallet_DEPENDENCIES = $(LIBBITCOIN_WALLET_TOOL) \
 	$(LIBBITCOIN_WALLET) $(LIBBITCOIN_SERVER) $(LIBBITCOIN_COMMON) \
@@ -1159,7 +1163,8 @@ ignitecoin_wallet_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(ignitecoin_wallet_LDFLAGS) $(LDFLAGS) -o $@
 am__ignitecoind_SOURCES_DIST = bitcoind.cpp bitcoind-res.rc
 #am__objects_30 = bitcoind-res.$(OBJEXT)
-am_ignitecoind_OBJECTS = ignitecoind-bitcoind.$(OBJEXT) $(am__objects_30)
+am_ignitecoind_OBJECTS = ignitecoind-bitcoind.$(OBJEXT) \
+	$(am__objects_30)
 ignitecoind_OBJECTS = $(am_ignitecoind_OBJECTS)
 ignitecoind_DEPENDENCIES = $(LIBBITCOIN_SERVER) $(LIBBITCOIN_WALLET) \
 	$(LIBBITCOIN_SERVER) $(LIBBITCOIN_COMMON) \
@@ -1173,7 +1178,8 @@ ignitecoind_DEPENDENCIES = $(LIBBITCOIN_SERVER) $(LIBBITCOIN_WALLET) \
 ignitecoind_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(ignitecoind_CXXFLAGS) \
 	$(CXXFLAGS) $(ignitecoind_LDFLAGS) $(LDFLAGS) -o $@
-am__qt_ignitecoin_qt_SOURCES_DIST = qt/main.cpp qt/res/bitcoin-qt-res.rc
+am__qt_ignitecoin_qt_SOURCES_DIST = qt/main.cpp \
+	qt/res/bitcoin-qt-res.rc
 am__objects_31 = qt/res/bitcoin-qt-res.$(OBJEXT)
 #am__objects_32 =  \
 #	$(am__objects_31)
@@ -1943,9 +1949,9 @@ am__objects_65 = test/test_ignitecoin-arith_uint256_tests.$(OBJEXT) \
 	test/test_ignitecoin-validation_block_tests.$(OBJEXT) \
 	test/test_ignitecoin-versionbits_tests.$(OBJEXT) \
 	$(am__objects_63) $(am__objects_64)
-am_test_test_ignitecoin_OBJECTS = $(am__objects_62) \
-	$(am__objects_65) $(am__objects_4) \
-	$(am__objects_4)
+am_test_test_ignitecoin_OBJECTS =  \
+	$(am__objects_62) $(am__objects_65) \
+	$(am__objects_4) $(am__objects_4)
 am__objects_66 = $(am__objects_4) $(am__objects_4)
 nodist_test_test_ignitecoin_OBJECTS =  \
 	$(am__objects_66)
@@ -1953,10 +1959,10 @@ test_test_ignitecoin_OBJECTS = $(am_test_test_ignitecoin_OBJECTS) \
 	$(nodist_test_test_ignitecoin_OBJECTS)
 #am__DEPENDENCIES_10 =  \
 #	$(am__DEPENDENCIES_1)
-test_test_ignitecoin_DEPENDENCIES = $(am__append_33) \
-	$(LIBBITCOIN_SERVER) $(LIBBITCOIN_CLI) \
-	$(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) \
-	$(LIBBITCOIN_CONSENSUS) \
+test_test_ignitecoin_DEPENDENCIES =  \
+	$(am__append_33) $(LIBBITCOIN_SERVER) \
+	$(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) \
+	$(LIBBITCOIN_UTIL) $(LIBBITCOIN_CONSENSUS) \
 	$(LIBBITCOIN_CRYPTO) $(am__DEPENDENCIES_4) \
 	$(am__DEPENDENCIES_2) $(LIBLEVELDB_SSE42) \
 	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_1) \
@@ -1984,7 +1990,11 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/src/config
 depcomp = $(SHELL) $(top_srcdir)/build-aux/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/libbitcoin_common_a-base58.Po \
+am__depfiles_remade = ./$(DEPDIR)/ignitecoin_cli-bitcoin-cli.Po \
+	./$(DEPDIR)/ignitecoin_tx-bitcoin-tx.Po \
+	./$(DEPDIR)/ignitecoin_wallet-bitcoin-wallet.Po \
+	./$(DEPDIR)/ignitecoind-bitcoind.Po \
+	./$(DEPDIR)/libbitcoin_common_a-base58.Po \
 	./$(DEPDIR)/libbitcoin_common_a-bech32.Po \
 	./$(DEPDIR)/libbitcoin_common_a-chainparams.Po \
 	./$(DEPDIR)/libbitcoin_common_a-coins.Po \
@@ -2046,10 +2056,6 @@ am__depfiles_remade = ./$(DEPDIR)/libbitcoin_common_a-base58.Po \
 	./$(DEPDIR)/libbitcoinconsensus_la-hash.Plo \
 	./$(DEPDIR)/libbitcoinconsensus_la-pubkey.Plo \
 	./$(DEPDIR)/libbitcoinconsensus_la-uint256.Plo \
-	./$(DEPDIR)/ignitecoin_cli-bitcoin-cli.Po \
-	./$(DEPDIR)/ignitecoin_tx-bitcoin-tx.Po \
-	./$(DEPDIR)/ignitecoin_wallet-bitcoin-wallet.Po \
-	./$(DEPDIR)/ignitecoind-bitcoind.Po \
 	bench/$(DEPDIR)/bench_ignitecoin-base58.Po \
 	bench/$(DEPDIR)/bench_ignitecoin-bech32.Po \
 	bench/$(DEPDIR)/bench_ignitecoin-bench.Po \
@@ -2162,6 +2168,7 @@ am__depfiles_remade = ./$(DEPDIR)/libbitcoin_common_a-base58.Po \
 	primitives/$(DEPDIR)/libbitcoin_consensus_a-transaction.Po \
 	primitives/$(DEPDIR)/libbitcoinconsensus_la-block.Plo \
 	primitives/$(DEPDIR)/libbitcoinconsensus_la-transaction.Plo \
+	qt/$(DEPDIR)/ignitecoin_qt-main.Po \
 	qt/$(DEPDIR)/libbitcoinqt_a-addressbookpage.Po \
 	qt/$(DEPDIR)/libbitcoinqt_a-addresstablemodel.Po \
 	qt/$(DEPDIR)/libbitcoinqt_a-askpassphrasedialog.Po \
@@ -2266,7 +2273,6 @@ am__depfiles_remade = ./$(DEPDIR)/libbitcoin_common_a-base58.Po \
 	qt/$(DEPDIR)/libbitcoinqt_a-walletmodeltransaction.Po \
 	qt/$(DEPDIR)/libbitcoinqt_a-walletview.Po \
 	qt/$(DEPDIR)/libbitcoinqt_a-winshutdownmonitor.Po \
-	qt/$(DEPDIR)/ignitecoin_qt-main.Po \
 	qt/test/$(DEPDIR)/test_ignitecoin_qt-addressbooktests.Po \
 	qt/test/$(DEPDIR)/test_ignitecoin_qt-apptests.Po \
 	qt/test/$(DEPDIR)/test_ignitecoin_qt-compattests.Po \
@@ -2459,7 +2465,7 @@ am__depfiles_remade = ./$(DEPDIR)/libbitcoin_common_a-base58.Po \
 am__mv = mv -f
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
-IGNCXXCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
+LTCXXCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) \
 	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
 	$(AM_CXXFLAGS) $(CXXFLAGS)
@@ -2495,7 +2501,7 @@ am__v_OBJCXXLD_0 = @echo "  OBJCXXLD" $@;
 am__v_OBJCXXLD_1 = 
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-IGNCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
+LTCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) \
 	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
 	$(AM_CFLAGS) $(CFLAGS)
@@ -2528,9 +2534,10 @@ SOURCES = $(crypto_libbitcoin_crypto_avx2_a_SOURCES) \
 	$(nodist_qt_libbitcoinqt_a_SOURCES) \
 	$(libbitcoinconsensus_la_SOURCES) \
 	$(bench_bench_ignitecoin_SOURCES) \
-	$(nodist_bench_bench_ignitecoin_SOURCES) $(ignitecoin_cli_SOURCES) \
-	$(ignitecoin_tx_SOURCES) $(ignitecoin_wallet_SOURCES) \
-	$(ignitecoind_SOURCES) $(qt_ignitecoin_qt_SOURCES) \
+	$(nodist_bench_bench_ignitecoin_SOURCES) \
+	$(ignitecoin_cli_SOURCES) $(ignitecoin_tx_SOURCES) \
+	$(ignitecoin_wallet_SOURCES) $(ignitecoind_SOURCES) \
+	$(qt_ignitecoin_qt_SOURCES) \
 	$(qt_test_test_ignitecoin_qt_SOURCES) \
 	$(nodist_qt_test_test_ignitecoin_qt_SOURCES) \
 	$(test_fuzz_address_deserialize_SOURCES) \
@@ -3510,8 +3517,8 @@ ignitecoin_wallet_SOURCES = bitcoin-wallet.cpp $(am__append_15)
 ignitecoin_wallet_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 ignitecoin_wallet_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 ignitecoin_wallet_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-ignitecoin_wallet_LDADD = $(LIBBITCOIN_WALLET_TOOL) $(LIBBITCOIN_WALLET) \
-	$(LIBBITCOIN_SERVER) $(LIBBITCOIN_COMMON) \
+ignitecoin_wallet_LDADD = $(LIBBITCOIN_WALLET_TOOL) \
+	$(LIBBITCOIN_WALLET) $(LIBBITCOIN_SERVER) $(LIBBITCOIN_COMMON) \
 	$(LIBBITCOIN_CONSENSUS) $(LIBBITCOIN_UTIL) \
 	$(LIBBITCOIN_CRYPTO) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) \
 	$(LIBMEMENV) $(LIBSECP256K1) $(BOOST_LIBS) $(BDB_LIBS) \
@@ -4141,9 +4148,10 @@ RAW_BENCH_FILES = \
   bench/data/block413567.raw
 
 GENERATED_BENCH_FILES = $(RAW_BENCH_FILES:.raw=.raw.h)
-bench_bench_ignitecoin_SOURCES = $(RAW_BENCH_FILES) \
-	bench/bench_bitcoin.cpp bench/bench.cpp \
-	bench/bench.h bench/block_assemble.cpp \
+bench_bench_ignitecoin_SOURCES =  \
+	$(RAW_BENCH_FILES) bench/bench_bitcoin.cpp \
+	bench/bench.cpp bench/bench.h \
+	bench/block_assemble.cpp \
 	bench/checkblock.cpp bench/checkqueue.cpp \
 	bench/duplicate_inputs.cpp \
 	bench/examples.cpp bench/rollingbloom.cpp \
@@ -4157,9 +4165,10 @@ bench_bench_ignitecoin_SOURCES = $(RAW_BENCH_FILES) \
 nodist_bench_bench_ignitecoin_SOURCES = $(GENERATED_BENCH_FILES)
 bench_bench_ignitecoin_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CLFAGS) $(EVENT_PTHREADS_CFLAGS) -I$(builddir)/bench/
 bench_bench_ignitecoin_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-bench_bench_ignitecoin_LDADD = $(LIBBITCOIN_WALLET) \
-	$(LIBBITCOIN_SERVER) $(LIBBITCOIN_COMMON) \
-	$(LIBBITCOIN_UTIL) $(LIBBITCOIN_CONSENSUS) \
+bench_bench_ignitecoin_LDADD =  \
+	$(LIBBITCOIN_WALLET) $(LIBBITCOIN_SERVER) \
+	$(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) \
+	$(LIBBITCOIN_CONSENSUS) \
 	$(LIBBITCOIN_CRYPTO) $(LIBLEVELDB) \
 	$(LIBLEVELDB_SSE42) $(LIBMEMENV) \
 	$(LIBSECP256K1) $(LIBUNIVALUE) \
@@ -4581,7 +4590,8 @@ qt_ignitecoin_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCL
   $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
 
 qt_ignitecoin_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
-qt_ignitecoin_qt_SOURCES = qt/main.cpp $(am__append_46)
+qt_ignitecoin_qt_SOURCES = qt/main.cpp \
+	$(am__append_46)
 qt_ignitecoin_qt_LDADD = qt/libbitcoinqt.a \
 	$(LIBBITCOIN_SERVER) $(am__append_47) \
 	$(am__append_48) $(LIBBITCOIN_CLI) \
@@ -5534,8 +5544,8 @@ bench/bench_ignitecoin-bench_bitcoin.$(OBJEXT): bench/$(am__dirstamp) \
 	bench/$(DEPDIR)/$(am__dirstamp)
 bench/bench_ignitecoin-bench.$(OBJEXT): bench/$(am__dirstamp) \
 	bench/$(DEPDIR)/$(am__dirstamp)
-bench/bench_ignitecoin-block_assemble.$(OBJEXT): bench/$(am__dirstamp) \
-	bench/$(DEPDIR)/$(am__dirstamp)
+bench/bench_ignitecoin-block_assemble.$(OBJEXT):  \
+	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
 bench/bench_ignitecoin-checkblock.$(OBJEXT): bench/$(am__dirstamp) \
 	bench/$(DEPDIR)/$(am__dirstamp)
 bench/bench_ignitecoin-checkqueue.$(OBJEXT): bench/$(am__dirstamp) \
@@ -5548,8 +5558,8 @@ bench/bench_ignitecoin-rollingbloom.$(OBJEXT): bench/$(am__dirstamp) \
 	bench/$(DEPDIR)/$(am__dirstamp)
 bench/bench_ignitecoin-crypto_hash.$(OBJEXT): bench/$(am__dirstamp) \
 	bench/$(DEPDIR)/$(am__dirstamp)
-bench/bench_ignitecoin-ccoins_caching.$(OBJEXT): bench/$(am__dirstamp) \
-	bench/$(DEPDIR)/$(am__dirstamp)
+bench/bench_ignitecoin-ccoins_caching.$(OBJEXT):  \
+	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
 bench/bench_ignitecoin-gcs_filter.$(OBJEXT): bench/$(am__dirstamp) \
 	bench/$(DEPDIR)/$(am__dirstamp)
 bench/bench_ignitecoin-merkle_root.$(OBJEXT): bench/$(am__dirstamp) \
@@ -5566,8 +5576,8 @@ bench/bench_ignitecoin-lockedpool.$(OBJEXT): bench/$(am__dirstamp) \
 	bench/$(DEPDIR)/$(am__dirstamp)
 bench/bench_ignitecoin-prevector.$(OBJEXT): bench/$(am__dirstamp) \
 	bench/$(DEPDIR)/$(am__dirstamp)
-bench/bench_ignitecoin-coin_selection.$(OBJEXT): bench/$(am__dirstamp) \
-	bench/$(DEPDIR)/$(am__dirstamp)
+bench/bench_ignitecoin-coin_selection.$(OBJEXT):  \
+	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
 
 bench/bench_ignitecoin$(EXEEXT): $(bench_bench_ignitecoin_OBJECTS) $(bench_bench_ignitecoin_DEPENDENCIES) $(EXTRA_bench_bench_ignitecoin_DEPENDENCIES) bench/$(am__dirstamp)
 	@rm -f bench/bench_ignitecoin$(EXEEXT)
@@ -5608,16 +5618,16 @@ qt/test/$(am__dirstamp):
 qt/test/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) qt/test/$(DEPDIR)
 	@: > qt/test/$(DEPDIR)/$(am__dirstamp)
-qt/test/test_ignitecoin_qt-apptests.$(OBJEXT): qt/test/$(am__dirstamp) \
-	qt/test/$(DEPDIR)/$(am__dirstamp)
+qt/test/test_ignitecoin_qt-apptests.$(OBJEXT):  \
+	qt/test/$(am__dirstamp) qt/test/$(DEPDIR)/$(am__dirstamp)
 qt/test/test_ignitecoin_qt-compattests.$(OBJEXT):  \
 	qt/test/$(am__dirstamp) qt/test/$(DEPDIR)/$(am__dirstamp)
 qt/test/test_ignitecoin_qt-rpcnestedtests.$(OBJEXT):  \
 	qt/test/$(am__dirstamp) qt/test/$(DEPDIR)/$(am__dirstamp)
-qt/test/test_ignitecoin_qt-test_main.$(OBJEXT): qt/test/$(am__dirstamp) \
-	qt/test/$(DEPDIR)/$(am__dirstamp)
-qt/test/test_ignitecoin_qt-uritests.$(OBJEXT): qt/test/$(am__dirstamp) \
-	qt/test/$(DEPDIR)/$(am__dirstamp)
+qt/test/test_ignitecoin_qt-test_main.$(OBJEXT):  \
+	qt/test/$(am__dirstamp) qt/test/$(DEPDIR)/$(am__dirstamp)
+qt/test/test_ignitecoin_qt-uritests.$(OBJEXT):  \
+	qt/test/$(am__dirstamp) qt/test/$(DEPDIR)/$(am__dirstamp)
 qt/test/test_ignitecoin_qt-util.$(OBJEXT): qt/test/$(am__dirstamp) \
 	qt/test/$(DEPDIR)/$(am__dirstamp)
 test/$(am__dirstamp):
@@ -5835,8 +5845,8 @@ test/fuzz/txundo_deserialize-deserialize.$(OBJEXT):  \
 test/fuzz/txundo_deserialize$(EXEEXT): $(test_fuzz_txundo_deserialize_OBJECTS) $(test_fuzz_txundo_deserialize_DEPENDENCIES) $(EXTRA_test_fuzz_txundo_deserialize_DEPENDENCIES) test/fuzz/$(am__dirstamp)
 	@rm -f test/fuzz/txundo_deserialize$(EXEEXT)
 	$(AM_V_CXXLD)$(test_fuzz_txundo_deserialize_LINK) $(test_fuzz_txundo_deserialize_OBJECTS) $(test_fuzz_txundo_deserialize_LDADD) $(LIBS)
-test/test_ignitecoin-test_bitcoin_main.$(OBJEXT): test/$(am__dirstamp) \
-	test/$(DEPDIR)/$(am__dirstamp)
+test/test_ignitecoin-test_bitcoin_main.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-test_bitcoin.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/gen/$(am__dirstamp):
@@ -5845,8 +5855,8 @@ test/gen/$(am__dirstamp):
 test/gen/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) test/gen/$(DEPDIR)
 	@: > test/gen/$(DEPDIR)/$(am__dirstamp)
-test/gen/test_ignitecoin-crypto_gen.$(OBJEXT): test/gen/$(am__dirstamp) \
-	test/gen/$(DEPDIR)/$(am__dirstamp)
+test/gen/test_ignitecoin-crypto_gen.$(OBJEXT):  \
+	test/gen/$(am__dirstamp) test/gen/$(DEPDIR)/$(am__dirstamp)
 wallet/test/test_test_ignitecoin-wallet_test_fixture.$(OBJEXT):  \
 	wallet/test/$(am__dirstamp) \
 	wallet/test/$(DEPDIR)/$(am__dirstamp)
@@ -5873,8 +5883,8 @@ test/test_ignitecoin-bip32_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-blockchain_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/test_ignitecoin-blockfilter_tests.$(OBJEXT): test/$(am__dirstamp) \
-	test/$(DEPDIR)/$(am__dirstamp)
+test/test_ignitecoin-blockfilter_tests.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-bloom_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-bswap_tests.$(OBJEXT): test/$(am__dirstamp) \
@@ -5883,14 +5893,14 @@ test/test_ignitecoin-checkqueue_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-coins_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/test_ignitecoin-compilerbug_tests.$(OBJEXT): test/$(am__dirstamp) \
-	test/$(DEPDIR)/$(am__dirstamp)
+test/test_ignitecoin-compilerbug_tests.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-compress_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-crypto_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/test_ignitecoin-cuckoocache_tests.$(OBJEXT): test/$(am__dirstamp) \
-	test/$(DEPDIR)/$(am__dirstamp)
+test/test_ignitecoin-cuckoocache_tests.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-denialofservice_tests.$(OBJEXT):  \
 	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-descriptor_tests.$(OBJEXT): test/$(am__dirstamp) \
@@ -5915,8 +5925,8 @@ test/test_ignitecoin-mempool_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-merkle_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/test_ignitecoin-merkleblock_tests.$(OBJEXT): test/$(am__dirstamp) \
-	test/$(DEPDIR)/$(am__dirstamp)
+test/test_ignitecoin-merkleblock_tests.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-miner_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-multisig_tests.$(OBJEXT): test/$(am__dirstamp) \
@@ -5937,16 +5947,16 @@ test/test_ignitecoin-raii_event_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-random_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/test_ignitecoin-reverselock_tests.$(OBJEXT): test/$(am__dirstamp) \
-	test/$(DEPDIR)/$(am__dirstamp)
+test/test_ignitecoin-reverselock_tests.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-rpc_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-sanity_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-scheduler_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/test_ignitecoin-script_p2sh_tests.$(OBJEXT): test/$(am__dirstamp) \
-	test/$(DEPDIR)/$(am__dirstamp)
+test/test_ignitecoin-script_p2sh_tests.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-script_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-script_standard_tests.$(OBJEXT):  \
@@ -5971,12 +5981,12 @@ test/test_ignitecoin-timedata_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-torcontrol_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/test_ignitecoin-transaction_tests.$(OBJEXT): test/$(am__dirstamp) \
-	test/$(DEPDIR)/$(am__dirstamp)
+test/test_ignitecoin-transaction_tests.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-txindex_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/test_ignitecoin-txvalidation_tests.$(OBJEXT): test/$(am__dirstamp) \
-	test/$(DEPDIR)/$(am__dirstamp)
+test/test_ignitecoin-txvalidation_tests.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-txvalidationcache_tests.$(OBJEXT):  \
 	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-uint256_tests.$(OBJEXT): test/$(am__dirstamp) \
@@ -5985,8 +5995,8 @@ test/test_ignitecoin-util_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-validation_block_tests.$(OBJEXT):  \
 	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
-test/test_ignitecoin-versionbits_tests.$(OBJEXT): test/$(am__dirstamp) \
-	test/$(DEPDIR)/$(am__dirstamp)
+test/test_ignitecoin-versionbits_tests.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_ignitecoin-key_properties.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 wallet/test/test_test_ignitecoin-db_tests.$(OBJEXT):  \
@@ -6051,6 +6061,10 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+include ./$(DEPDIR)/ignitecoin_cli-bitcoin-cli.Po # am--include-marker
+include ./$(DEPDIR)/ignitecoin_tx-bitcoin-tx.Po # am--include-marker
+include ./$(DEPDIR)/ignitecoin_wallet-bitcoin-wallet.Po # am--include-marker
+include ./$(DEPDIR)/ignitecoind-bitcoind.Po # am--include-marker
 include ./$(DEPDIR)/libbitcoin_common_a-base58.Po # am--include-marker
 include ./$(DEPDIR)/libbitcoin_common_a-bech32.Po # am--include-marker
 include ./$(DEPDIR)/libbitcoin_common_a-chainparams.Po # am--include-marker
@@ -6113,10 +6127,6 @@ include ./$(DEPDIR)/libbitcoinconsensus_la-arith_uint256.Plo # am--include-marke
 include ./$(DEPDIR)/libbitcoinconsensus_la-hash.Plo # am--include-marker
 include ./$(DEPDIR)/libbitcoinconsensus_la-pubkey.Plo # am--include-marker
 include ./$(DEPDIR)/libbitcoinconsensus_la-uint256.Plo # am--include-marker
-include ./$(DEPDIR)/ignitecoin_cli-bitcoin-cli.Po # am--include-marker
-include ./$(DEPDIR)/ignitecoin_tx-bitcoin-tx.Po # am--include-marker
-include ./$(DEPDIR)/ignitecoin_wallet-bitcoin-wallet.Po # am--include-marker
-include ./$(DEPDIR)/ignitecoind-bitcoind.Po # am--include-marker
 include bench/$(DEPDIR)/bench_ignitecoin-base58.Po # am--include-marker
 include bench/$(DEPDIR)/bench_ignitecoin-bech32.Po # am--include-marker
 include bench/$(DEPDIR)/bench_ignitecoin-bench.Po # am--include-marker
@@ -6229,6 +6239,7 @@ include primitives/$(DEPDIR)/libbitcoin_consensus_a-block.Po # am--include-marke
 include primitives/$(DEPDIR)/libbitcoin_consensus_a-transaction.Po # am--include-marker
 include primitives/$(DEPDIR)/libbitcoinconsensus_la-block.Plo # am--include-marker
 include primitives/$(DEPDIR)/libbitcoinconsensus_la-transaction.Plo # am--include-marker
+include qt/$(DEPDIR)/ignitecoin_qt-main.Po # am--include-marker
 include qt/$(DEPDIR)/libbitcoinqt_a-addressbookpage.Po # am--include-marker
 include qt/$(DEPDIR)/libbitcoinqt_a-addresstablemodel.Po # am--include-marker
 include qt/$(DEPDIR)/libbitcoinqt_a-askpassphrasedialog.Po # am--include-marker
@@ -6333,7 +6344,6 @@ include qt/$(DEPDIR)/libbitcoinqt_a-walletmodel.Po # am--include-marker
 include qt/$(DEPDIR)/libbitcoinqt_a-walletmodeltransaction.Po # am--include-marker
 include qt/$(DEPDIR)/libbitcoinqt_a-walletview.Po # am--include-marker
 include qt/$(DEPDIR)/libbitcoinqt_a-winshutdownmonitor.Po # am--include-marker
-include qt/$(DEPDIR)/ignitecoin_qt-main.Po # am--include-marker
 include qt/test/$(DEPDIR)/test_ignitecoin_qt-addressbooktests.Po # am--include-marker
 include qt/test/$(DEPDIR)/test_ignitecoin_qt-apptests.Po # am--include-marker
 include qt/test/$(DEPDIR)/test_ignitecoin_qt-compattests.Po # am--include-marker
@@ -6548,11 +6558,11 @@ am--depfiles: $(am__depfiles_remade)
 
 .cc.lo:
 	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
-	$(IGNCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
 	$(am__mv) $$depbase.Tpo $$depbase.Plo
 #	$(AM_V_CXX)source='$<' object='$@' libtool=yes \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(IGNCXXCOMPILE) -c -o $@ $<
+#	$(AM_V_CXX_no)$(LTCXXCOMPILE) -c -o $@ $<
 
 crypto/libbitcoin_crypto_avx2_a-sha256_avx2.o: crypto/sha256_avx2.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libbitcoin_crypto_avx2_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libbitcoin_crypto_avx2_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/libbitcoin_crypto_avx2_a-sha256_avx2.o -MD -MP -MF crypto/$(DEPDIR)/libbitcoin_crypto_avx2_a-sha256_avx2.Tpo -c -o crypto/libbitcoin_crypto_avx2_a-sha256_avx2.o `test -f 'crypto/sha256_avx2.cpp' || echo '$(srcdir)/'`crypto/sha256_avx2.cpp
@@ -12963,11 +12973,11 @@ wallet/test/test_test_ignitecoin-init_tests.obj: wallet/test/init_tests.cpp
 
 .cpp.lo:
 	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
-	$(IGNCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
 	$(am__mv) $$depbase.Tpo $$depbase.Plo
 #	$(AM_V_CXX)source='$<' object='$@' libtool=yes \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(IGNCXXCOMPILE) -c -o $@ $<
+#	$(AM_V_CXX_no)$(LTCXXCOMPILE) -c -o $@ $<
 
 .mm.o:
 	$(AM_V_OBJCXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -13500,7 +13510,11 @@ clean-am: clean-binPROGRAMS clean-generic clean-libLTLIBRARIES \
 	clean-libtool clean-local clean-noinstPROGRAMS mostlyclean-am
 
 distclean: distclean-recursive
-		-rm -f ./$(DEPDIR)/libbitcoin_common_a-base58.Po
+		-rm -f ./$(DEPDIR)/ignitecoin_cli-bitcoin-cli.Po
+	-rm -f ./$(DEPDIR)/ignitecoin_tx-bitcoin-tx.Po
+	-rm -f ./$(DEPDIR)/ignitecoin_wallet-bitcoin-wallet.Po
+	-rm -f ./$(DEPDIR)/ignitecoind-bitcoind.Po
+	-rm -f ./$(DEPDIR)/libbitcoin_common_a-base58.Po
 	-rm -f ./$(DEPDIR)/libbitcoin_common_a-bech32.Po
 	-rm -f ./$(DEPDIR)/libbitcoin_common_a-chainparams.Po
 	-rm -f ./$(DEPDIR)/libbitcoin_common_a-coins.Po
@@ -13562,10 +13576,6 @@ distclean: distclean-recursive
 	-rm -f ./$(DEPDIR)/libbitcoinconsensus_la-hash.Plo
 	-rm -f ./$(DEPDIR)/libbitcoinconsensus_la-pubkey.Plo
 	-rm -f ./$(DEPDIR)/libbitcoinconsensus_la-uint256.Plo
-	-rm -f ./$(DEPDIR)/ignitecoin_cli-bitcoin-cli.Po
-	-rm -f ./$(DEPDIR)/ignitecoin_tx-bitcoin-tx.Po
-	-rm -f ./$(DEPDIR)/ignitecoin_wallet-bitcoin-wallet.Po
-	-rm -f ./$(DEPDIR)/ignitecoind-bitcoind.Po
 	-rm -f bench/$(DEPDIR)/bench_ignitecoin-base58.Po
 	-rm -f bench/$(DEPDIR)/bench_ignitecoin-bech32.Po
 	-rm -f bench/$(DEPDIR)/bench_ignitecoin-bench.Po
@@ -13678,6 +13688,7 @@ distclean: distclean-recursive
 	-rm -f primitives/$(DEPDIR)/libbitcoin_consensus_a-transaction.Po
 	-rm -f primitives/$(DEPDIR)/libbitcoinconsensus_la-block.Plo
 	-rm -f primitives/$(DEPDIR)/libbitcoinconsensus_la-transaction.Plo
+	-rm -f qt/$(DEPDIR)/ignitecoin_qt-main.Po
 	-rm -f qt/$(DEPDIR)/libbitcoinqt_a-addressbookpage.Po
 	-rm -f qt/$(DEPDIR)/libbitcoinqt_a-addresstablemodel.Po
 	-rm -f qt/$(DEPDIR)/libbitcoinqt_a-askpassphrasedialog.Po
@@ -13782,7 +13793,6 @@ distclean: distclean-recursive
 	-rm -f qt/$(DEPDIR)/libbitcoinqt_a-walletmodeltransaction.Po
 	-rm -f qt/$(DEPDIR)/libbitcoinqt_a-walletview.Po
 	-rm -f qt/$(DEPDIR)/libbitcoinqt_a-winshutdownmonitor.Po
-	-rm -f qt/$(DEPDIR)/ignitecoin_qt-main.Po
 	-rm -f qt/test/$(DEPDIR)/test_ignitecoin_qt-addressbooktests.Po
 	-rm -f qt/test/$(DEPDIR)/test_ignitecoin_qt-apptests.Po
 	-rm -f qt/test/$(DEPDIR)/test_ignitecoin_qt-compattests.Po
@@ -14017,7 +14027,11 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-recursive
-		-rm -f ./$(DEPDIR)/libbitcoin_common_a-base58.Po
+		-rm -f ./$(DEPDIR)/ignitecoin_cli-bitcoin-cli.Po
+	-rm -f ./$(DEPDIR)/ignitecoin_tx-bitcoin-tx.Po
+	-rm -f ./$(DEPDIR)/ignitecoin_wallet-bitcoin-wallet.Po
+	-rm -f ./$(DEPDIR)/ignitecoind-bitcoind.Po
+	-rm -f ./$(DEPDIR)/libbitcoin_common_a-base58.Po
 	-rm -f ./$(DEPDIR)/libbitcoin_common_a-bech32.Po
 	-rm -f ./$(DEPDIR)/libbitcoin_common_a-chainparams.Po
 	-rm -f ./$(DEPDIR)/libbitcoin_common_a-coins.Po
@@ -14079,10 +14093,6 @@ maintainer-clean: maintainer-clean-recursive
 	-rm -f ./$(DEPDIR)/libbitcoinconsensus_la-hash.Plo
 	-rm -f ./$(DEPDIR)/libbitcoinconsensus_la-pubkey.Plo
 	-rm -f ./$(DEPDIR)/libbitcoinconsensus_la-uint256.Plo
-	-rm -f ./$(DEPDIR)/ignitecoin_cli-bitcoin-cli.Po
-	-rm -f ./$(DEPDIR)/ignitecoin_tx-bitcoin-tx.Po
-	-rm -f ./$(DEPDIR)/ignitecoin_wallet-bitcoin-wallet.Po
-	-rm -f ./$(DEPDIR)/ignitecoind-bitcoind.Po
 	-rm -f bench/$(DEPDIR)/bench_ignitecoin-base58.Po
 	-rm -f bench/$(DEPDIR)/bench_ignitecoin-bech32.Po
 	-rm -f bench/$(DEPDIR)/bench_ignitecoin-bench.Po
@@ -14195,6 +14205,7 @@ maintainer-clean: maintainer-clean-recursive
 	-rm -f primitives/$(DEPDIR)/libbitcoin_consensus_a-transaction.Po
 	-rm -f primitives/$(DEPDIR)/libbitcoinconsensus_la-block.Plo
 	-rm -f primitives/$(DEPDIR)/libbitcoinconsensus_la-transaction.Plo
+	-rm -f qt/$(DEPDIR)/ignitecoin_qt-main.Po
 	-rm -f qt/$(DEPDIR)/libbitcoinqt_a-addressbookpage.Po
 	-rm -f qt/$(DEPDIR)/libbitcoinqt_a-addresstablemodel.Po
 	-rm -f qt/$(DEPDIR)/libbitcoinqt_a-askpassphrasedialog.Po
@@ -14299,7 +14310,6 @@ maintainer-clean: maintainer-clean-recursive
 	-rm -f qt/$(DEPDIR)/libbitcoinqt_a-walletmodeltransaction.Po
 	-rm -f qt/$(DEPDIR)/libbitcoinqt_a-walletview.Po
 	-rm -f qt/$(DEPDIR)/libbitcoinqt_a-winshutdownmonitor.Po
-	-rm -f qt/$(DEPDIR)/ignitecoin_qt-main.Po
 	-rm -f qt/test/$(DEPDIR)/test_ignitecoin_qt-addressbooktests.Po
 	-rm -f qt/test/$(DEPDIR)/test_ignitecoin_qt-apptests.Po
 	-rm -f qt/test/$(DEPDIR)/test_ignitecoin_qt-compattests.Po

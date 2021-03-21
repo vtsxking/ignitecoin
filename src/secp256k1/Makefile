@@ -274,7 +274,7 @@ am__depfiles_remade = src/$(DEPDIR)/bench_ecdh.Po \
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-IGNCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
+LTCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) \
 	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
 	$(AM_CFLAGS) $(CFLAGS)
@@ -291,7 +291,7 @@ am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
 CCASCOMPILE = $(CCAS) $(AM_CCASFLAGS) $(CCASFLAGS)
-IGNCCASCOMPILE = $(LIBTOOL) $(AM_V_lt) $(AM_LIBTOOLFLAGS) \
+LTCCASCOMPILE = $(LIBTOOL) $(AM_V_lt) $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=compile $(CCAS) $(AM_CCASFLAGS) \
 	$(CCASFLAGS)
 AM_V_CCAS = $(am__v_CCAS_$(V))
@@ -1019,11 +1019,11 @@ am--depfiles: $(am__depfiles_remade)
 
 .c.lo:
 	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
-	$(IGNCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
 	$(am__mv) $$depbase.Tpo $$depbase.Plo
 #	$(AM_V_CC)source='$<' object='$@' libtool=yes \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(IGNCOMPILE) -c -o $@ $<
+#	$(AM_V_CC_no)$(LTCOMPILE) -c -o $@ $<
 
 src/libsecp256k1_la-secp256k1.lo: src/secp256k1.c
 	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsecp256k1_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/libsecp256k1_la-secp256k1.lo -MD -MP -MF src/$(DEPDIR)/libsecp256k1_la-secp256k1.Tpo -c -o src/libsecp256k1_la-secp256k1.lo `test -f 'src/secp256k1.c' || echo '$(srcdir)/'`src/secp256k1.c
@@ -1095,7 +1095,7 @@ src/tests-tests.obj: src/tests.c
 	$(AM_V_CCAS)$(CCASCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .s.lo:
-	$(AM_V_CCAS)$(IGNCCASCOMPILE) -c -o $@ $<
+	$(AM_V_CCAS)$(LTCCASCOMPILE) -c -o $@ $<
 
 mostlyclean-libtool:
 	-rm -f *.lo
