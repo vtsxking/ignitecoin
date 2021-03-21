@@ -105,7 +105,7 @@ public:
         pchMessageStart[1] = 0xc9;
         pchMessageStart[2] = 0xa0;
         pchMessageStart[3] = 0xd7;
-        nDefaultPort = 7187;
+        nDefaultPort = 7185;
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 1;
         m_assumed_chain_state_size = 1;
@@ -147,7 +147,7 @@ public:
 
         checkpointData = {
             {
-                {  0, uint256S("0x0")},
+                {  0, uint256S("0xf086349d4e62e82a2961aea06011c8572670e382bd83269f91dee8e67e1ed9ef")},
             }
         };
 
