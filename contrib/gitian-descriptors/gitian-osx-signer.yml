@@ -7,7 +7,7 @@ architectures:
 packages:
 - "faketime"
 remotes:
-- "url": "https://github.com/vtsxking/ignitecoin-detached-sigs.git"
+- "url": "https://github.com/ignitecoin-project/ignitecoin-detached-sigs.git"
   "dir": "signature"
 files:
 - "ignitecoin-osx-unsigned.tar.gz"

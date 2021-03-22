@@ -119,7 +119,7 @@ Wallet changes
 When creating a transaction with a fee above `-maxtxfee` (default 0.1 IGNC),
 the RPC commands `walletcreatefundedpsbt` and  `fundrawtransaction` will now fail
 instead of rounding down the fee. Beware that the `feeRate` argument is specified
-in IGNC per kilobyte, not ignitero per byte.
+in IGNC per kilobyte, not litoshi per byte.
 
 Documentation
 -------------

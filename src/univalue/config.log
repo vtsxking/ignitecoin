@@ -65,8 +65,8 @@ configure:3016: checking how to print strings
 configure:3043: result: printf
 configure:3068: checking whether make supports the include directive
 configure:3083: make -f confmf.GNU && cat confinc.out
-make[4]: Entering directory '/home/ubuntu/Desktop/ignitecoin/src/univalue'
-make[4]: Leaving directory '/home/ubuntu/Desktop/ignitecoin/src/univalue'
+make[4]: Entering directory '/home/ubuntu/Desktop/frf/ignitecoin/src/univalue'
+make[4]: Leaving directory '/home/ubuntu/Desktop/frf/ignitecoin/src/univalue'
 this is the am__doit target
 configure:3086: $? = 0
 configure:3105: result: yes (GNU style)
@@ -598,7 +598,7 @@ lt_cv_truncate_bin='/usr/bin/dd bs=4096 count=1'
 ## Output variables. ##
 ## ----------------- ##
 
-ACLOCAL='${SHELL} /home/ubuntu/Desktop/ignitecoin/src/univalue/build-aux/missing aclocal-1.16'
+ACLOCAL='${SHELL} /home/ubuntu/Desktop/frf/ignitecoin/src/univalue/build-aux/missing aclocal-1.16'
 AMDEPBACKSLASH='\'
 AMDEP_FALSE='#'
 AMDEP_TRUE=''
@@ -608,9 +608,9 @@ AM_DEFAULT_V='$(AM_DEFAULT_VERBOSITY)'
 AM_DEFAULT_VERBOSITY='0'
 AM_V='$(V)'
 AR='ar'
-AUTOCONF='${SHELL} /home/ubuntu/Desktop/ignitecoin/src/univalue/build-aux/missing autoconf'
-AUTOHEADER='${SHELL} /home/ubuntu/Desktop/ignitecoin/src/univalue/build-aux/missing autoheader'
-AUTOMAKE='${SHELL} /home/ubuntu/Desktop/ignitecoin/src/univalue/build-aux/missing automake-1.16'
+AUTOCONF='${SHELL} /home/ubuntu/Desktop/frf/ignitecoin/src/univalue/build-aux/missing autoconf'
+AUTOHEADER='${SHELL} /home/ubuntu/Desktop/frf/ignitecoin/src/univalue/build-aux/missing autoheader'
+AUTOMAKE='${SHELL} /home/ubuntu/Desktop/frf/ignitecoin/src/univalue/build-aux/missing automake-1.16'
 AWK='mawk'
 BUILD_EXEEXT=''
 CC='gcc'
@@ -652,7 +652,7 @@ LIPO=''
 LN_S='ln -s'
 LTLIBOBJS=''
 LT_SYS_LIBRARY_PATH=''
-MAKEINFO='${SHELL} /home/ubuntu/Desktop/ignitecoin/src/univalue/build-aux/missing makeinfo'
+MAKEINFO='${SHELL} /home/ubuntu/Desktop/frf/ignitecoin/src/univalue/build-aux/missing makeinfo'
 MANIFEST_TOOL=':'
 MKDIR_P='/usr/bin/mkdir -p'
 NM='/usr/bin/nm -B'
@@ -711,7 +711,7 @@ host_vendor='pc'
 htmldir='${docdir}'
 includedir='${prefix}/include'
 infodir='${datarootdir}/info'
-install_sh='${SHELL} /home/ubuntu/Desktop/ignitecoin/src/univalue/build-aux/install-sh'
+install_sh='${SHELL} /home/ubuntu/Desktop/frf/ignitecoin/src/univalue/build-aux/install-sh'
 libdir='${exec_prefix}/lib'
 libexecdir='${exec_prefix}/libexec'
 localedir='${datarootdir}/locale'
@@ -779,8 +779,8 @@ config.status:1150: creating univalue-config.h
 config.status:1331: univalue-config.h is unchanged
 config.status:1379: executing depfiles commands
 config.status:1456: cd .       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
-make[4]: Entering directory '/home/ubuntu/Desktop/ignitecoin/src/univalue'
+make[4]: Entering directory '/home/ubuntu/Desktop/frf/ignitecoin/src/univalue'
 make[4]: Nothing to be done for 'am--depfiles'.
-make[4]: Leaving directory '/home/ubuntu/Desktop/ignitecoin/src/univalue'
+make[4]: Leaving directory '/home/ubuntu/Desktop/frf/ignitecoin/src/univalue'
 config.status:1461: $? = 0
 config.status:1379: executing libtool commands

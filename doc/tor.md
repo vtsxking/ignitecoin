@@ -46,7 +46,7 @@ versions of Tor see [Section 3](#3-automatically-listen-on-tor).*
 
 	HiddenServiceDir /var/lib/tor/ignitecoin-service/
 	HiddenServicePort 7185 127.0.0.1:7185
-	HiddenServicePort 7186 127.0.0.1:7186
+	HiddenServicePort 19335 127.0.0.1:19335
 
 The directory can be different of course, but (both) port numbers should be equal to
 your ignitecoind's P2P listen port (7185 by default).

@@ -32,7 +32,7 @@ packages:
 - "ca-certificates"
 - "python"
 remotes:
-- "url": "https://github.com/vtsxking/ignitecoin.git"
+- "url": "https://github.com/ignitecoin-project/ignitecoin.git"
   "dir": "ignitecoin"
 files: []
 script: |

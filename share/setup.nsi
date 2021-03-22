@@ -9,11 +9,11 @@ SetCompressor /SOLID lzma
 !define URL https://ignitecoin.org/
 
 # MUI Symbol Definitions
-!define MUI_ICON "/home/ubuntu/Desktop/ignitecoin/share/pixmaps/bitcoin.ico"
-!define MUI_WELCOMEFINISHPAGE_BITMAP "/home/ubuntu/Desktop/ignitecoin/share/pixmaps/nsis-wizard.bmp"
+!define MUI_ICON "/home/ubuntu/Desktop/frf/ignitecoin/share/pixmaps/bitcoin.ico"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "/home/ubuntu/Desktop/frf/ignitecoin/share/pixmaps/nsis-wizard.bmp"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_RIGHT
-!define MUI_HEADERIMAGE_BITMAP "/home/ubuntu/Desktop/ignitecoin/share/pixmaps/nsis-header.bmp"
+!define MUI_HEADERIMAGE_BITMAP "/home/ubuntu/Desktop/frf/ignitecoin/share/pixmaps/nsis-header.bmp"
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT HKLM
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
@@ -22,7 +22,7 @@ SetCompressor /SOLID lzma
 !define MUI_FINISHPAGE_RUN "$WINDIR\explorer.exe"
 !define MUI_FINISHPAGE_RUN_PARAMETERS $INSTDIR\ignitecoin-qt
 !define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
-!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/home/ubuntu/Desktop/ignitecoin/share/pixmaps/nsis-wizard.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/home/ubuntu/Desktop/frf/ignitecoin/share/pixmaps/nsis-wizard.bmp"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
 
 # Included files
@@ -48,7 +48,7 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE English
 
 # Installer attributes
-OutFile /home/ubuntu/Desktop/ignitecoin/ignitecoin-0.18.1-win-setup.exe
+OutFile /home/ubuntu/Desktop/frf/ignitecoin/ignitecoin-0.18.1-win-setup.exe
 !if "" == "64"
 InstallDir $PROGRAMFILES64\Ignitecoin
 !else
@@ -73,16 +73,16 @@ ShowUninstDetails show
 Section -Main SEC0000
     SetOutPath $INSTDIR
     SetOverwrite on
-    File /home/ubuntu/Desktop/ignitecoin/release/ignitecoin-qt
-    File /oname=COPYING.txt /home/ubuntu/Desktop/ignitecoin/COPYING
-    File /oname=readme.txt /home/ubuntu/Desktop/ignitecoin/doc/README_windows.txt
+    File /home/ubuntu/Desktop/frf/ignitecoin/release/ignitecoin-qt
+    File /oname=COPYING.txt /home/ubuntu/Desktop/frf/ignitecoin/COPYING
+    File /oname=readme.txt /home/ubuntu/Desktop/frf/ignitecoin/doc/README_windows.txt
     SetOutPath $INSTDIR\daemon
-    File /home/ubuntu/Desktop/ignitecoin/release/ignitecoind
-    File /home/ubuntu/Desktop/ignitecoin/release/ignitecoin-cli
-    File /home/ubuntu/Desktop/ignitecoin/release/ignitecoin-tx
-    File /home/ubuntu/Desktop/ignitecoin/release/ignitecoin-wallet
+    File /home/ubuntu/Desktop/frf/ignitecoin/release/ignitecoind
+    File /home/ubuntu/Desktop/frf/ignitecoin/release/ignitecoin-cli
+    File /home/ubuntu/Desktop/frf/ignitecoin/release/ignitecoin-tx
+    File /home/ubuntu/Desktop/frf/ignitecoin/release/ignitecoin-wallet
     SetOutPath $INSTDIR\doc
-    File /r /x Makefile* /home/ubuntu/Desktop/ignitecoin/doc\*.*
+    File /r /x Makefile* /home/ubuntu/Desktop/frf/ignitecoin/doc\*.*
     SetOutPath $INSTDIR
     WriteRegStr HKCU "${REGKEY}\Components" Main 1
 SectionEnd
