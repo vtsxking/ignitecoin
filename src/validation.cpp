@@ -3393,6 +3393,7 @@ bool CheckBlock(const CBlock& block, BlockValidationState& state, const Consensu
 
 bool IsWitnessEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& params)
 {
+    return true; // remove after 2000 blocks have been mined...
     int height = pindexPrev == nullptr ? 0 : pindexPrev->nHeight + 1;
     return (height >= params.SegwitHeight);
 }
@@ -3529,7 +3530,7 @@ static bool ContextualCheckBlock(const CBlock& block, BlockValidationState& stat
     // Check that all transactions are finalized
     for (const auto& tx : block.vtx) {
         if (!IsFinalTx(*tx, nHeight, nLockTimeCutoff)) {
-            return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-txns-nonfinal", "non-final transaction");
+            //return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-txns-nonfinal", "non-final transaction"); uncomment after 2000 blocks mined.
         }
     }
 
