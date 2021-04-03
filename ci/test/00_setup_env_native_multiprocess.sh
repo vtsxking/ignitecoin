@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Copyright (c) 2020 The Bitcoin Core developers
+# Copyright (c) 2020 The Ignitecoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,5 +12,5 @@ export PACKAGES="cmake python3"
 export DEP_OPTS="MULTIPROCESS=1"
 export GOAL="install"
 export BITCOIN_CONFIG="--with-boost-process"
-export TEST_RUNNER_ENV="BITCOIND=bitcoin-node"
+export TEST_RUNNER_ENV="BITCOIND=ignitecoin-node"
 export RUN_SECURITY_TESTS="true"

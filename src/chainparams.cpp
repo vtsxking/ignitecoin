@@ -1,5 +1,5 @@
 // Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2009-2020 The Bitcoin Core developers
+// Copyright (c) 2009-2020 The Ignitecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -97,10 +97,10 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0xfe; // bitcoin + 5
-        pchMessageStart[1] = 0xc3; // bitcoin + 5
-        pchMessageStart[2] = 0xb9; // bitcoin + 5
-        pchMessageStart[3] = 0xde; // bitcoin + 5
+        pchMessageStart[0] = 0xfe; // ignitecoin + 5
+        pchMessageStart[1] = 0xc3; // ignitecoin + 5
+        pchMessageStart[2] = 0xb9; // ignitecoin + 5
+        pchMessageStart[3] = 0xde; // ignitecoin + 5
         nDefaultPort = 8333;
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 1; // new blockchain
@@ -116,15 +116,15 @@ public:
         // This is fine at runtime as we'll fall back to using them as an addrfetch if they don't support the
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
-        //vSeeds.emplace_back("seed.bitcoin.sipa.be"); // Pieter Wuille, only supports x1, x5, x9, and xd
+        //vSeeds.emplace_back("seed.ignitecoin.sipa.be"); // Pieter Wuille, only supports x1, x5, x9, and xd
         //vSeeds.emplace_back("dnsseed.bluematt.me"); // Matt Corallo, only supports x9
-        //vSeeds.emplace_back("dnsseed.bitcoin.dashjr.org"); // Luke Dashjr
-        //vSeeds.emplace_back("seed.bitcoinstats.com"); // Christian Decker, supports x1 - xf
-        //vSeeds.emplace_back("seed.bitcoin.jonasschnelli.ch"); // Jonas Schnelli, only supports x1, x5, x9, and xd
+        //vSeeds.emplace_back("dnsseed.ignitecoin.dashjr.org"); // Luke Dashjr
+        //vSeeds.emplace_back("seed.ignitecoinstats.com"); // Christian Decker, supports x1 - xf
+        //vSeeds.emplace_back("seed.ignitecoin.jonasschnelli.ch"); // Jonas Schnelli, only supports x1, x5, x9, and xd
         //vSeeds.emplace_back("seed.btc.petertodd.org"); // Peter Todd, only supports x1, x5, x9, and xd
-        //vSeeds.emplace_back("seed.bitcoin.sprovoost.nl"); // Sjors Provoost
+        //vSeeds.emplace_back("seed.ignitecoin.sprovoost.nl"); // Sjors Provoost
         //vSeeds.emplace_back("dnsseed.emzy.de"); // Stephan Oeste
-        //vSeeds.emplace_back("seed.bitcoin.wiz.biz"); // Jason Maurice
+        //vSeeds.emplace_back("seed.ignitecoin.wiz.biz"); // Jason Maurice
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,70); // V
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,65); // T
@@ -209,9 +209,9 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        //vSeeds.emplace_back("testnet-seed.bitcoin.jonasschnelli.ch");
+        //vSeeds.emplace_back("testnet-seed.ignitecoin.jonasschnelli.ch");
         //vSeeds.emplace_back("seed.tbtc.petertodd.org");
-        //vSeeds.emplace_back("seed.testnet.bitcoin.sprovoost.nl");
+        //vSeeds.emplace_back("seed.testnet.ignitecoin.sprovoost.nl");
         //vSeeds.emplace_back("testnet-seed.bluematt.me"); // Just a static list of stable node(s), only supports x9
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,132); // v

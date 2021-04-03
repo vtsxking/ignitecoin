@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2020 The Bitcoin Core developers
+// Copyright (c) 2018-2020 The Ignitecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -45,7 +45,7 @@
 #include <warnings.h>
 
 #if defined(HAVE_CONFIG_H)
-#include <config/bitcoin-config.h>
+#include <config/ignitecoin-config.h>
 #endif
 
 #include <any>
@@ -194,7 +194,7 @@ public:
         {
             // TODO: Temporary scope to check correctness of refactored code.
             // Should be removed manually after merge of
-            // https://github.com/bitcoin/bitcoin/pull/20158
+            // https://github.com/ignitecoin/ignitecoin/pull/20158
             LOCK(cs_main);
             assert(std::addressof(::ChainActive()) == std::addressof(chainman().ActiveChain()));
             tip = chainman().ActiveChain().Tip();
@@ -225,7 +225,7 @@ public:
         {
             // TODO: Temporary scope to check correctness of refactored code.
             // Should be removed manually after merge of
-            // https://github.com/bitcoin/bitcoin/pull/20158
+            // https://github.com/ignitecoin/ignitecoin/pull/20158
             LOCK(::cs_main);
             active_chainstate = &m_context->chainman->ActiveChainstate();
             assert(std::addressof(::ChainstateActive()) == std::addressof(*active_chainstate));
@@ -644,7 +644,7 @@ public:
         {
             // TODO: Temporary scope to check correctness of refactored code.
             // Should be removed manually after merge of
-            // https://github.com/bitcoin/bitcoin/pull/20158
+            // https://github.com/ignitecoin/ignitecoin/pull/20158
             LOCK(::cs_main);
             active_chainstate = &chainman().ActiveChainstate();
             assert(std::addressof(::ChainstateActive()) == std::addressof(*active_chainstate));

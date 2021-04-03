@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2021 The Bitcoin Core developers
+// Copyright (c) 2018-2021 The Ignitecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -35,7 +35,7 @@ public:
     //! Master key fingerprint of the signer
     std::string m_fingerprint;
 
-    //! Bitcoin mainnet, testnet, etc
+    //! Ignitecoin mainnet, testnet, etc
     std::string m_chain;
 
     //! Name of signer

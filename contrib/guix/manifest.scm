@@ -124,14 +124,14 @@ chain for " target " development."))
       (home-page (package-home-page xgcc))
       (license (package-license xgcc)))))
 
-(define* (make-bitcoin-cross-toolchain target
+(define* (make-ignitecoin-cross-toolchain target
                                   #:key
                                   (base-gcc-for-libc gcc-7)
                                   (base-kernel-headers linux-libre-headers-5.4)
                                   (base-libc glibc)  ; glibc 2.31
                                   (base-gcc (make-gcc-rpath-link gcc-9)))
   "Convenience wrapper around MAKE-CROSS-TOOLCHAIN with default values
-desirable for building Bitcoin Core release binaries."
+desirable for building Ignitecoin Core release binaries."
   (make-cross-toolchain target
                    base-gcc-for-libc
                    base-kernel-headers
@@ -235,7 +235,7 @@ chain for " target " development."))
                  (make-mingw-pthreads-cross-toolchain "x86_64-w64-mingw32")
                  (make-nsis-with-sde-support nsis-x86_64)))
           ((string-contains target "-linux-")
-           (list (make-bitcoin-cross-toolchain target)))
+           (list (make-ignitecoin-cross-toolchain target)))
           ((string-contains target "darwin")
            (list clang-8 binutils imagemagick libtiff librsvg font-tuffy cmake xorriso))
           (else '())))))

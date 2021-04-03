@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2021 The Bitcoin Core developers
+// Copyright (c) 2018-2021 The Ignitecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -33,7 +33,7 @@ static RPCHelpMan enumeratesigners()
         RPCExamples{""},
         [](const RPCHelpMan& self, const JSONRPCRequest& request) -> UniValue {
             const std::string command = gArgs.GetArg("-signer", "");
-            if (command == "") throw JSONRPCError(RPC_WALLET_ERROR, "Error: restart bitcoind with -signer=<cmd>");
+            if (command == "") throw JSONRPCError(RPC_WALLET_ERROR, "Error: restart ignitecoind with -signer=<cmd>");
             std::string chain = gArgs.GetChainName();
             UniValue signers_res = UniValue::VARR;
             try {
@@ -61,7 +61,7 @@ static RPCHelpMan signerdisplayaddress()
         "signerdisplayaddress",
         "Display address on an external signer for verification.\n",
         {
-            {"address",     RPCArg::Type::STR, RPCArg::Optional::NO, /* default_val */ "", "bitcoin address to display"},
+            {"address",     RPCArg::Type::STR, RPCArg::Optional::NO, /* default_val */ "", "ignitecoin address to display"},
         },
         RPCResult{RPCResult::Type::NONE,"",""},
         RPCExamples{""},

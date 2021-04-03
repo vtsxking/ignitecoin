@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
-# Copyright (c) 2017-2018 The Bitcoin Core developers
+# Copyright (c) 2017-2018 The Ignitecoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test external signer.
 
-Verify that a bitcoind node can use an external signer command
+Verify that a ignitecoind node can use an external signer command
 """
 import os
 import platform
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import IgnitecoinTestFramework
 from test_framework.util import (
     assert_equal,
     assert_raises_rpc_error,
 )
 
 
-class SignerTest(BitcoinTestFramework):
+class SignerTest(IgnitecoinTestFramework):
     def mock_signer_path(self):
         path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'mocks', 'signer.py')
         if platform.system() == "Windows":
@@ -48,7 +48,7 @@ class SignerTest(BitcoinTestFramework):
     def run_test(self):
         self.log.debug(f"-signer={self.mock_signer_path()}")
 
-        assert_raises_rpc_error(-4, 'Error: restart bitcoind with -signer=<cmd>',
+        assert_raises_rpc_error(-4, 'Error: restart ignitecoind with -signer=<cmd>',
             self.nodes[0].enumeratesigners
         )
 
