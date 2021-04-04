@@ -239,7 +239,7 @@ public:
             // TODO to be specified in a future patch.
         };
 
-        chainTxData = ChainTxData{}};
+        chainTxData = ChainTxData{};
     }
 };
 

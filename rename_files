@@ -1,0 +1,10 @@
+import os
+
+files = [] # list of tuple with old filename and new filename
+for file in os.listdir("/home/ubuntu/Desktop/ignitecoin"):
+    if file.endswith(".h") or file.endswith(".cpp") or file.endswith(".rc"):
+        if file.find("bitcoin") > -1:
+            counter = counter + 1
+            newFileName = file.replace("bitcoin", "ignitecoin")
+            file = newFileName
+            files.append((file, newFileName))
