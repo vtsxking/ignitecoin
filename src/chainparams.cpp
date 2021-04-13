@@ -328,10 +328,10 @@ public:
         nDefaultPort = 38333;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1598918400, 52613770, 0x1e0377ae, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1618298677, 359352821, 0x1d00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000008819873e925422c1ff0f99f7cc9bbb232af63a077a480a3633bee1ef6"));
-        assert(genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000000a66a0d1e95fb6a083edeb23628d9e00482ad88a0743a4595ff75ff7c"));
+        assert(genesis.hashMerkleRoot == uint256S("0x787e0b614b214cb10a7153b73cb644ccbbea7e2694be1c0bae49c164bc95a7d6"));
 
         vFixedSeeds.clear();
 
@@ -341,7 +341,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        bech32_hrp = "tb";
+        bech32_hrp = "tignc";
 
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
@@ -364,8 +364,8 @@ public:
         consensus.BIP16Exception = uint256();
         consensus.BIP34Height = 500; // BIP34 activated on regtest (Used in functional tests)
         consensus.BIP34Hash = uint256();
-        consensus.BIP65Height = 1351; // BIP65 activated on regtest (Used in functional tests)
-        consensus.BIP66Height = 1251; // BIP66 activated on regtest (Used in functional tests)
+        consensus.BIP65Height = 1; // BIP65 activated on regtest (Used in functional tests)
+        consensus.BIP66Height = 1; // BIP66 activated on regtest (Used in functional tests)
         consensus.CSVHeight = 432; // CSV activated on regtest (Used in rpc activation tests)
         consensus.SegwitHeight = 0; // SEGWIT is always activated on regtest unless overridden
         consensus.MinBIP9WarningHeight = 0;
@@ -396,11 +396,25 @@ public:
         m_assumed_chain_state_size = 0;
 
         UpdateActivationParametersFromArgs(args);
+        /*
+        python2 genesis.py -a SHA256 -z "March 28th, The current price of ADA is 1.1877 USD" -p "04099ec1da209f0ea366dced891b8e9209747e785592dda04b02d2a0d98949976c5320d266b48f6f09aab61b351da92c131920212cc5d150c679ebf10fb9225d18" -t 1618304461
+            04ffff001d0104324d6172636820323874682c205468652063757272656e74207072696365206f662041444120697320312e3138373720555344
+            algorithm: SHA256
+            merkle hash: 787e0b614b214cb10a7153b73cb644ccbbea7e2694be1c0bae49c164bc95a7d6
+            pszTimestamp: March 28th, The current price of ADA is 1.1877 USD
+            pubkey: 04099ec1da209f0ea366dced891b8e9209747e785592dda04b02d2a0d98949976c5320d266b48f6f09aab61b351da92c131920212cc5d150c679ebf10fb9225d18
+            time: 1618304461
+            bits: 0x1d00ffff
+            Searching for genesis hash..
+            359316.0 hash/s, estimate: 3.3 hgenesis hash found!
+            nonce: 3113637130
+            genesis hash: 000000009b3e2828ebeaa32f58acdd658a200886188ad0549a0111df8c332cae
+        */
 
-        genesis = CreateGenesisBlock(1296688602, 2, 0x207fffff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1618304461, 3113637130, 0x1d00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206"));
-        assert(genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000000009b3e2828ebeaa32f58acdd658a200886188ad0549a0111df8c332cae"));
+        assert(genesis.hashMerkleRoot == uint256S("0x787e0b614b214cb10a7153b73cb644ccbbea7e2694be1c0bae49c164bc95a7d6"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
@@ -412,19 +426,11 @@ public:
 
         checkpointData = {
             {
-                {0, uint256S("0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206")},
+                {0, uint256S("000000009b3e2828ebeaa32f58acdd658a200886188ad0549a0111df8c332cae")},
             }
         };
 
         m_assumeutxo_data = MapAssumeutxo{
-            {
-                110,
-                {uint256S("0x76fd7334ac7c1baf57ddc0c626f073a655a35d98a4258cd1382c8cc2b8392e10"), 110},
-            },
-            {
-                210,
-                {uint256S("0x9c5ed99ef98544b34f8920b6d1802f72ac28ae6e2bd2bd4c316ff10c230df3f2"), 210},
-            },
         };
 
         chainTxData = ChainTxData{
@@ -439,7 +445,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        bech32_hrp = "bcrt";
+        bech32_hrp = "ignrc";
     }
 
     /**
