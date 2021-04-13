@@ -338,8 +338,8 @@ public:
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
-        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
+        base58Prefixes[EXT_PUBLIC_KEY] = {0xc4, 0x35, 0x87, 0xCF};
+        base58Prefixes[EXT_SECRET_KEY] = {0xc4, 0x35, 0x83, 0x94};
 
         bech32_hrp = "tignc";
 
@@ -386,10 +386,10 @@ public:
         consensus.nMinimumChainWork = uint256{};
         consensus.defaultAssumeValid = uint256{};
 
-        pchMessageStart[0] = 0xfa;
-        pchMessageStart[1] = 0xbf;
-        pchMessageStart[2] = 0xb5;
-        pchMessageStart[3] = 0xda;
+        pchMessageStart[0] = 0xfb; // -1 
+        pchMessageStart[1] = 0xbe; // -1
+        pchMessageStart[2] = 0xb4; // -1
+        pchMessageStart[3] = 0xdb; // -1
         nDefaultPort = 18444;
         nPruneAfterHeight = gArgs.GetBoolArg("-fastprune", false) ? 100 : 1000;
         m_assumed_blockchain_size = 0;
@@ -442,8 +442,8 @@ public:
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
-        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
+        base58Prefixes[EXT_PUBLIC_KEY] = {0xc4, 0x35, 0x87, 0xCF};
+        base58Prefixes[EXT_SECRET_KEY] = {0xc4, 0x35, 0x83, 0x94};
 
         bech32_hrp = "ignrc";
     }
