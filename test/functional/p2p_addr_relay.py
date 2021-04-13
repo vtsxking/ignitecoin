@@ -28,7 +28,7 @@ for i in range(num_ipv4_addrs):
     addr.time = int(time.time()) + i
     addr.nServices = NODE_NETWORK | NODE_WITNESS
     addr.ip = "123.123.123.{}".format(i % 256)
-    addr.port = 8333 + i
+    addr.port = 8684 + i
     ADDRS.append(addr)
 
 
@@ -38,8 +38,8 @@ class AddrReceiver(P2PInterface):
     def on_addr(self, message):
         for addr in message.addrs:
             assert_equal(addr.nServices, 9)
-            if not 8333 <= addr.port < 8343:
-                raise AssertionError("Invalid addr.port of {} (8333-8342 expected)".format(addr.port))
+            if not 8684 <= addr.port < 8343:
+                raise AssertionError("Invalid addr.port of {} (8684-8342 expected)".format(addr.port))
             assert addr.ip.startswith('123.123.123.')
             self.num_ipv4_received += 1
 

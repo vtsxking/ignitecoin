@@ -274,7 +274,7 @@ Command line
 ------------
 
 - Command line options prefixed with main/test/regtest network names like
-  `-main.port=8333` `-test.server=1` previously were allowed but ignored. Now
+  `-main.port=8684` `-test.server=1` previously were allowed but ignored. Now
   they trigger "Invalid parameter" errors on startup. (#17482)
 
 New RPCs
@@ -433,7 +433,7 @@ Build system
 - #18346 Document an RPCResult for all calls; Enforce at compile time (MarcoFalke)
 - #18396 Add missing HelpExampleRpc for getblockfilter (theStack)
 - #18398 Fix broken RPCExamples for waitforblock(height) (theStack)
-- #18444 Remove final comma for last entry of fixed-size arrays/objects in RPCResult (luke-jr)
+- #18483 Remove final comma for last entry of fixed-size arrays/objects in RPCResult (luke-jr)
 - #18459 Remove unused getbalances() code (jonatack)
 - #18484 Correctly compute redeemScript from witnessScript for signrawtransaction (achow101)
 - #18487 Fix rpcRunLater race in walletpassphrase (promag)

@@ -1,1 +1,4 @@
-# dummy
+qt/libignitecoinqt_a-qrc_ignitecoin.o: qt/qrc_ignitecoin.cpp \
+ /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:

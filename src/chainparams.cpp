@@ -101,7 +101,7 @@ public:
         pchMessageStart[1] = 0xc3; // ignitecoin + 5
         pchMessageStart[2] = 0xb9; // ignitecoin + 5
         pchMessageStart[3] = 0xde; // ignitecoin + 5
-        nDefaultPort = 8333;
+        nDefaultPort = 8684;
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 1; // new blockchain
         m_assumed_chain_state_size = 6;
@@ -196,7 +196,7 @@ public:
         pchMessageStart[1] = 0x14; // +3
         pchMessageStart[2] = 0x0c; // +3
         pchMessageStart[3] = 0x0a; // +3
-        nDefaultPort = 18333;
+        nDefaultPort = 18684;
         nPruneAfterHeight = 1000;
         m_assumed_blockchain_size = 40;
         m_assumed_chain_state_size = 2;
@@ -256,7 +256,7 @@ public:
             bin = ParseHex("512103ad5e0edad18cb1f0fc0d28a3d4f1f3e445640337489abb10404f2d1e086be430210359ef5021964fe22d6f8e05b2463c9540ce96883fe3b278760f048f5189f2e6c452ae");
             //vSeeds.emplace_back("178.128.221.177");
             //vSeeds.emplace_back("2a01:7c8:d005:390::5");
-            //vSeeds.emplace_back("v7ajjeirttkbnt32wpy3c6w3emwnfr3fkla7hpxcfokr3ysd3kqtzmqd.onion:38333");
+            //vSeeds.emplace_back("v7ajjeirttkbnt32wpy3c6w3emwnfr3fkla7hpxcfokr3ysd3kqtzmqd.onion:38684");
 
             consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000000019fd16269a");
             consensus.defaultAssumeValid = uint256S("0x0000002a1de0f46379358c1fd09906f7ac59adf3712323ed90eb59e4c183c020"); // 9434
@@ -325,7 +325,7 @@ public:
         uint256 hash = h.GetHash();
         memcpy(pchMessageStart, hash.begin(), 4);
 
-        nDefaultPort = 38333;
+        nDefaultPort = 38684;
         nPruneAfterHeight = 1000;
 
         genesis = CreateGenesisBlock(1618298677, 359352821, 0x1d00ffff, 1, 50 * COIN);
@@ -390,7 +390,7 @@ public:
         pchMessageStart[1] = 0xbe; // -1
         pchMessageStart[2] = 0xb4; // -1
         pchMessageStart[3] = 0xdb; // -1
-        nDefaultPort = 18444;
+        nDefaultPort = 18483;
         nPruneAfterHeight = gArgs.GetBoolArg("-fastprune", false) ? 100 : 1000;
         m_assumed_blockchain_size = 0;
         m_assumed_chain_state_size = 0;
