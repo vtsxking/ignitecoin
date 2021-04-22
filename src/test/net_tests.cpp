@@ -1,8 +1,8 @@
-// Copyright (c) 2012-2018 The Bitcoin Core developers
+// Copyright (c) 2012-2018 The Ignitecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #include <addrman.h>
-#include <test/test_bitcoin.h>
+#include <test/test_ignitecoin.h>
 #include <string>
 #include <boost/test/unit_test.hpp>
 #include <hash.h>
@@ -94,13 +94,13 @@ BOOST_AUTO_TEST_CASE(caddrdb_read)
     addrmanUncorrupted.MakeDeterministic();
 
     CService addr1, addr2, addr3;
-    BOOST_CHECK(Lookup("250.7.1.1", addr1, 8333, false));
+    BOOST_CHECK(Lookup("250.7.1.1", addr1, 8684, false));
     BOOST_CHECK(Lookup("250.7.2.2", addr2, 9999, false));
     BOOST_CHECK(Lookup("250.7.3.3", addr3, 9999, false));
 
     // Add three addresses to new table.
     CService source;
-    BOOST_CHECK(Lookup("252.5.1.1", source, 8333, false));
+    BOOST_CHECK(Lookup("252.5.1.1", source, 8684, false));
     BOOST_CHECK(addrmanUncorrupted.Add(CAddress(addr1, NODE_NONE), source));
     BOOST_CHECK(addrmanUncorrupted.Add(CAddress(addr2, NODE_NONE), source));
     BOOST_CHECK(addrmanUncorrupted.Add(CAddress(addr3, NODE_NONE), source));

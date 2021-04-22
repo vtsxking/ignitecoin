@@ -2,41 +2,41 @@
 
 # backward compatibility for existing gentoo layout 
 #
-if [ -d "/var/lib/bitcoin/.bitcoin" ]; then
-	BITCOIND_DEFAULT_DATADIR="/var/lib/bitcoin/.bitcoin"
+if [ -d "/var/lib/ignitecoin/.ignitecoin" ]; then
+	IGNITECOIND_DEFAULT_DATADIR="/var/lib/ignitecoin/.ignitecoin"
 else
-	BITCOIND_DEFAULT_DATADIR="/var/lib/bitcoind"
+	IGNITECOIND_DEFAULT_DATADIR="/var/lib/ignitecoind"
 fi
 
-BITCOIND_CONFIGFILE=${BITCOIND_CONFIGFILE:-/etc/bitcoin/bitcoin.conf}
-BITCOIND_PIDDIR=${BITCOIND_PIDDIR:-/var/run/bitcoind}
-BITCOIND_PIDFILE=${BITCOIND_PIDFILE:-${BITCOIND_PIDDIR}/bitcoind.pid}
-BITCOIND_DATADIR=${BITCOIND_DATADIR:-${BITCOIND_DEFAULT_DATADIR}}
-BITCOIND_USER=${BITCOIND_USER:-${BITCOIN_USER:-bitcoin}}
-BITCOIND_GROUP=${BITCOIND_GROUP:-bitcoin}
-BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/bitcoind}
-BITCOIND_NICE=${BITCOIND_NICE:-${NICELEVEL:-0}}
-BITCOIND_OPTS="${BITCOIND_OPTS:-${BITCOIN_OPTS}}"
+IGNITECOIND_CONFIGFILE=${IGNITECOIND_CONFIGFILE:-/etc/ignitecoin/ignitecoin.conf}
+IGNITECOIND_PIDDIR=${IGNITECOIND_PIDDIR:-/var/run/ignitecoind}
+IGNITECOIND_PIDFILE=${IGNITECOIND_PIDFILE:-${IGNITECOIND_PIDDIR}/ignitecoind.pid}
+IGNITECOIND_DATADIR=${IGNITECOIND_DATADIR:-${IGNITECOIND_DEFAULT_DATADIR}}
+IGNITECOIND_USER=${IGNITECOIND_USER:-${IGNITECOIN_USER:-ignitecoin}}
+IGNITECOIND_GROUP=${IGNITECOIND_GROUP:-ignitecoin}
+IGNITECOIND_BIN=${IGNITECOIND_BIN:-/usr/bin/ignitecoind}
+IGNITECOIND_NICE=${IGNITECOIND_NICE:-${NICELEVEL:-0}}
+IGNITECOIND_OPTS="${IGNITECOIND_OPTS:-${IGNITECOIN_OPTS}}"
 
-name="Bitcoin Core Daemon"
-description="Bitcoin cryptocurrency P2P network daemon"
+name="Ignitecoin Core Daemon"
+description="Ignitecoin cryptocurrency P2P network daemon"
 
-command="/usr/bin/bitcoind"
-command_args="-pid=\"${BITCOIND_PIDFILE}\" \
-		-conf=\"${BITCOIND_CONFIGFILE}\" \
-		-datadir=\"${BITCOIND_DATADIR}\" \
+command="/usr/bin/ignitecoind"
+command_args="-pid=\"${IGNITECOIND_PIDFILE}\" \
+		-conf=\"${IGNITECOIND_CONFIGFILE}\" \
+		-datadir=\"${IGNITECOIND_DATADIR}\" \
 		-daemon \
-		${BITCOIND_OPTS}"
+		${IGNITECOIND_OPTS}"
 
-required_files="${BITCOIND_CONFIGFILE}"
-start_stop_daemon_args="-u ${BITCOIND_USER} \
-			-N ${BITCOIND_NICE} -w 2000"
-pidfile="${BITCOIND_PIDFILE}"
+required_files="${IGNITECOIND_CONFIGFILE}"
+start_stop_daemon_args="-u ${IGNITECOIND_USER} \
+			-N ${IGNITECOIND_NICE} -w 2000"
+pidfile="${IGNITECOIND_PIDFILE}"
 
 # The retry schedule to use when stopping the daemon. Could be either
 # a timeout in seconds or multiple signal/timeout pairs (like
 # "SIGKILL/180 SIGTERM/300")
-retry="${BITCOIND_SIGTERM_TIMEOUT}"
+retry="${IGNITECOIND_SIGTERM_TIMEOUT}"
 
 depend() {
 	need localmount net
@@ -50,29 +50,29 @@ start_pre() {
 	checkpath \
 	-d \
 	--mode 0750 \
-	--owner "${BITCOIND_USER}:${BITCOIND_GROUP}" \
-	"${BITCOIND_DATADIR}"
+	--owner "${IGNITECOIND_USER}:${IGNITECOIND_GROUP}" \
+	"${IGNITECOIND_DATADIR}"
 
 	checkpath \
 	-d \
 	--mode 0755 \
-	--owner "${BITCOIND_USER}:${BITCOIND_GROUP}" \
-	"${BITCOIND_PIDDIR}"
+	--owner "${IGNITECOIND_USER}:${IGNITECOIND_GROUP}" \
+	"${IGNITECOIND_PIDDIR}"
 
 	checkpath -f \
-	-o ${BITCOIND_USER}:${BITCOIND_GROUP} \
+	-o ${IGNITECOIND_USER}:${IGNITECOIND_GROUP} \
 	-m 0660 \
-	${BITCOIND_CONFIGFILE}
+	${IGNITECOIND_CONFIGFILE}
 
 	checkconfig || return 1
 }
 
 checkconfig()
 {
-	if ! grep -qs '^rpcpassword=' "${BITCOIND_CONFIGFILE}" ; then
+	if ! grep -qs '^rpcpassword=' "${IGNITECOIND_CONFIGFILE}" ; then
 		eerror ""
-		eerror "ERROR: You must set a secure rpcpassword to run bitcoind."
-		eerror "The setting must appear in ${BITCOIND_CONFIGFILE}"
+		eerror "ERROR: You must set a secure rpcpassword to run ignitecoind."
+		eerror "The setting must appear in ${IGNITECOIND_CONFIGFILE}"
 		eerror ""
 		eerror "This password is security critical to securing wallets "
 		eerror "and must not be the same as the rpcuser setting."
@@ -84,7 +84,7 @@ checkconfig()
 		eerror "It is recommended that you also set alertnotify so you are "
 		eerror "notified of problems:"
 		eerror ""
-		eerror "ie: alertnotify=echo %%s | mail -s \"Bitcoin Alert\"" \
+		eerror "ie: alertnotify=echo %%s | mail -s \"Ignitecoin Alert\"" \
 			"admin@foo.com"
 		eerror ""
 		return 1

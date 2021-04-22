@@ -120,7 +120,7 @@
     <name>BanTableModel</name>
     </context>
 <context>
-    <name>BitcoinGUI</name>
+    <name>IgnitecoinGUI</name>
     </context>
 <context>
     <name>CoinControlDialog</name>
@@ -237,6 +237,6 @@
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>ignitecoin-core</name>
     </context>
 </TS>

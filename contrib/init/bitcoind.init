@@ -1,36 +1,36 @@
 #!/usr/bin/env bash
 #
-#  bitcoind The bitcoin core server.
+#  ignitecoind The ignitecoin core server.
 #
 #
 # chkconfig: 345 80 20
-# description: bitcoind
-# processname: bitcoind
+# description: ignitecoind
+# processname: ignitecoind
 #
 
 # Source function library.
 . /etc/init.d/functions
 
-# you can override defaults in /etc/sysconfig/bitcoind, see below
-if [ -f /etc/sysconfig/bitcoind ]; then
-        . /etc/sysconfig/bitcoind
+# you can override defaults in /etc/sysconfig/ignitecoind, see below
+if [ -f /etc/sysconfig/ignitecoind ]; then
+        . /etc/sysconfig/ignitecoind
 fi
 
 RETVAL=0
 
-prog=bitcoind
-# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/bitcoind
-lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/bitcoind}
+prog=ignitecoind
+# you can override the lockfile via IGNITECOIND_LOCKFILE in /etc/sysconfig/ignitecoind
+lockfile=${IGNITECOIND_LOCKFILE-/var/lock/subsys/ignitecoind}
 
-# bitcoind defaults to /usr/bin/bitcoind, override with BITCOIND_BIN
-bitcoind=${BITCOIND_BIN-/usr/bin/bitcoind}
+# ignitecoind defaults to /usr/bin/ignitecoind, override with IGNITECOIND_BIN
+ignitecoind=${IGNITECOIND_BIN-/usr/bin/ignitecoind}
 
-# bitcoind opts default to -disablewallet, override with BITCOIND_OPTS
-bitcoind_opts=${BITCOIND_OPTS--disablewallet}
+# ignitecoind opts default to -disablewallet, override with IGNITECOIND_OPTS
+ignitecoind_opts=${IGNITECOIND_OPTS--disablewallet}
 
 start() {
     echo -n $"Starting $prog: "
-    daemon $DAEMONOPTS $bitcoind $bitcoind_opts
+    daemon $DAEMONOPTS $ignitecoind $ignitecoind_opts
     RETVAL=$?
     echo
     [ $RETVAL -eq 0 ] && touch $lockfile

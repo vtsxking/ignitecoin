@@ -149,10 +149,10 @@
     </message>
 </context>
 <context>
-    <name>BitcoinGUI</name>
+    <name>IgnitecoinGUI</name>
     <message>
-        <source>Send coins to a Bitcoin address</source>
-        <translation>ផ្ញើកាក់ទៅកាន់ អាសយដ្ឋាន Bitcoin មួយ</translation>
+        <source>Send coins to a Ignitecoin address</source>
+        <translation>ផ្ញើកាក់ទៅកាន់ អាសយដ្ឋាន Ignitecoin មួយ</translation>
     </message>
     </context>
 <context>
@@ -314,6 +314,6 @@
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>ignitecoin-core</name>
     </context>
 </TS>
