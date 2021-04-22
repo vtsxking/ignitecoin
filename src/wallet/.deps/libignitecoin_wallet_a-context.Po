@@ -1,6 +1,0 @@
-wallet/libignitecoin_wallet_a-context.o: wallet/context.cpp \
- /usr/include/stdc-predef.h wallet/context.h
-
-/usr/include/stdc-predef.h:
-
-wallet/context.h:

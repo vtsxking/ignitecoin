@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2017-2020 The Ignitecoin Core developers
+# Copyright (c) 2017-2018 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test logic for setting nMinimumChainWork on command line.
@@ -17,13 +17,13 @@ only succeeds past a given node once its nMinimumChainWork has been exceeded.
 
 import time
 
-from test_framework.test_framework import IgnitecoinTestFramework
-from test_framework.util import assert_equal
+from test_framework.test_framework import BitcoinTestFramework
+from test_framework.util import connect_nodes, assert_equal
 
 # 2 hashes required per regtest block (with no difficulty adjustment)
 REGTEST_WORK_PER_BLOCK = 2
 
-class MinimumChainWorkTest(IgnitecoinTestFramework):
+class MinimumChainWorkTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 3
@@ -39,7 +39,7 @@ class MinimumChainWorkTest(IgnitecoinTestFramework):
         # block relay to inbound peers.
         self.setup_nodes()
         for i in range(self.num_nodes-1):
-            self.connect_nodes(i+1, i)
+            connect_nodes(self.nodes[i+1], i)
 
     def run_test(self):
         # Start building a chain on node0.  node2 shouldn't be able to sync until node1's

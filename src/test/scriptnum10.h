@@ -1,17 +1,18 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2020 The Ignitecoin Core developers
+// Copyright (c) 2009-2018 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_TEST_SCRIPTNUM10_H
 #define BITCOIN_TEST_SCRIPTNUM10_H
 
-#include <assert.h>
+#include <algorithm>
 #include <limits>
 #include <stdexcept>
 #include <stdint.h>
 #include <string>
 #include <vector>
+#include <assert.h>
 
 class scriptnum10_error : public std::runtime_error
 {
@@ -22,7 +23,7 @@ public:
 class CScriptNum10
 {
 /**
- * The ScriptNum implementation from Ignitecoin Core 0.10.0, for cross-comparison.
+ * The ScriptNum implementation from Bitcoin Core 0.10.0, for cross-comparison.
  */
 public:
 

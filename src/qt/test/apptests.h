@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2020 The Ignitecoin Core developers
+// Copyright (c) 2018 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,19 +10,19 @@
 #include <string>
 #include <utility>
 
-class IgnitecoinApplication;
-class IgnitecoinGUI;
+class BitcoinApplication;
+class BitcoinGUI;
 class RPCConsole;
 
 class AppTests : public QObject
 {
     Q_OBJECT
 public:
-    explicit AppTests(IgnitecoinApplication& app) : m_app(app) {}
+    explicit AppTests(BitcoinApplication& app) : m_app(app) {}
 
 private Q_SLOTS:
     void appTests();
-    void guiTests(IgnitecoinGUI* window);
+    void guiTests(BitcoinGUI* window);
     void consoleTests(RPCConsole* console);
 
 private:
@@ -37,8 +37,8 @@ private:
         ~HandleCallback();
     };
 
-    //! Ignitecoin application.
-    IgnitecoinApplication& m_app;
+    //! Bitcoin application.
+    BitcoinApplication& m_app;
 
     //! Set of pending callback names. Used to track expected callbacks and shut
     //! down the app after the last callback has been handled and all tests have

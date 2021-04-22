@@ -1,14 +1,13 @@
-// Copyright (c) 2017-2020 The Ignitecoin Core developers
+// Copyright (c) 2017-2018 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <wallet/coinselection.h>
 
-#include <policy/feerate.h>
 #include <util/system.h>
 #include <util/moneystr.h>
 
-#include <optional>
+#include <boost/optional.hpp>
 
 // Descending order comparator
 struct {
@@ -108,9 +107,6 @@ bool SelectCoinsBnB(std::vector<OutputGroup>& utxo_pool, const CAmount& target_v
                 best_selection = curr_selection;
                 best_selection.resize(utxo_pool.size());
                 best_waste = curr_waste;
-                if (best_waste == 0) {
-                    break;
-                }
             }
             curr_waste -= (curr_value - actual_target); // Remove the excess value as we will be selecting different coins now
             backtrack = true;
@@ -223,7 +219,7 @@ bool KnapsackSolver(const CAmount& nTargetValue, std::vector<OutputGroup>& group
     nValueRet = 0;
 
     // List of values less than target
-    std::optional<OutputGroup> lowest_larger;
+    boost::optional<OutputGroup> lowest_larger;
     std::vector<OutputGroup> applicable_groups;
     CAmount nTotalLower = 0;
 
@@ -301,28 +297,10 @@ bool KnapsackSolver(const CAmount& nTargetValue, std::vector<OutputGroup>& group
 
  ******************************************************************************/
 
-void OutputGroup::Insert(const CInputCoin& output, int depth, bool from_me, size_t ancestors, size_t descendants, bool positive_only) {
-    // Compute the effective value first
-    const CAmount coin_fee = output.m_input_bytes < 0 ? 0 : m_effective_feerate.GetFee(output.m_input_bytes);
-    const CAmount ev = output.txout.nValue - coin_fee;
-
-    // Filter for positive only here before adding the coin
-    if (positive_only && ev <= 0) return;
-
+void OutputGroup::Insert(const CInputCoin& output, int depth, bool from_me, size_t ancestors, size_t descendants) {
     m_outputs.push_back(output);
-    CInputCoin& coin = m_outputs.back();
-
-    coin.m_fee = coin_fee;
-    fee += coin.m_fee;
-
-    coin.m_long_term_fee = coin.m_input_bytes < 0 ? 0 : m_long_term_feerate.GetFee(coin.m_input_bytes);
-    long_term_fee += coin.m_long_term_fee;
-
-    coin.effective_value = ev;
-    effective_value += coin.effective_value;
-
     m_from_me &= from_me;
-    m_value += output.txout.nValue;
+    m_value += output.effective_value;
     m_depth = std::min(m_depth, depth);
     // ancestors here express the number of ancestors the new coin will end up having, which is
     // the sum, rather than the max; this will overestimate in the cases where multiple inputs
@@ -331,6 +309,16 @@ void OutputGroup::Insert(const CInputCoin& output, int depth, bool from_me, size
     // descendants is the count as seen from the top ancestor, not the descendants as seen from the
     // coin itself; thus, this value is counted as the max, not the sum
     m_descendants = std::max(m_descendants, descendants);
+    effective_value = m_value;
+}
+
+std::vector<CInputCoin>::iterator OutputGroup::Discard(const CInputCoin& output) {
+    auto it = m_outputs.begin();
+    while (it != m_outputs.end() && it->outpoint != output.outpoint) ++it;
+    if (it == m_outputs.end()) return it;
+    m_value -= output.effective_value;
+    effective_value -= output.effective_value;
+    return m_outputs.erase(it);
 }
 
 bool OutputGroup::EligibleForSpending(const CoinEligibilityFilter& eligibility_filter) const

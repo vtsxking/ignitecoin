@@ -1,21 +1,20 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2019 The Ignitecoin Core developers
+# Copyright (c) 2014-2018 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Test running ignitecoind with the -rpcbind and -rpcallowip options."""
+"""Test running bitcoind with the -rpcbind and -rpcallowip options."""
 
 import sys
 
 from test_framework.netutil import all_interfaces, addr_to_hex, get_bind_addrs, test_ipv6_local
-from test_framework.test_framework import IgnitecoinTestFramework, SkipTest
+from test_framework.test_framework import BitcoinTestFramework, SkipTest
 from test_framework.util import assert_equal, assert_raises_rpc_error, get_rpc_proxy, rpc_port, rpc_url
 
-class RPCBindTest(IgnitecoinTestFramework):
+class RPCBindTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.bind_to_localhost_only = False
         self.num_nodes = 1
-        self.supports_cli = False
 
     def setup_network(self):
         self.add_nodes(self.num_nodes, None)
@@ -56,7 +55,7 @@ class RPCBindTest(IgnitecoinTestFramework):
         self.nodes[0].rpchost = None
         self.start_nodes([node_args])
         # connect to node through non-loopback interface
-        node = get_rpc_proxy(rpc_url(self.nodes[0].datadir, 0, self.chain, "%s:%d" % (rpchost, rpcport)), 0, coveragedir=self.options.coveragedir)
+        node = get_rpc_proxy(rpc_url(self.nodes[0].datadir, 0, "%s:%d" % (rpchost, rpcport)), 0, coveragedir=self.options.coveragedir)
         node.getnetworkinfo()
         self.stop_nodes()
 

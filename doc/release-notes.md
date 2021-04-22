@@ -1,168 +1,71 @@
-*After branching off for a major version release of Ignitecoin Core, use this
-template to create the initial release notes draft.*
+Bitcoin Core version 0.18.x is now available from:
 
-*The release notes draft is a temporary file that can be added to by anyone. See
-[/doc/developer-notes.md#release-notes](/doc/developer-notes.md#release-notes)
-for the process.*
+  <https://bitcoincore.org/bin/bitcoin-core-0.18.x/>
 
-*Create the draft, named* "*version* Release Notes Draft"
-*(e.g. "0.20.0 Release Notes Draft"), as a collaborative wiki in:*
-
-https://github.com/ignitecoin-core/ignitecoin-devwiki/wiki/
-
-*Before the final release, move the notes back to this git repository.*
-
-*version* Release Notes Draft
-===============================
-
-Ignitecoin Core version *version* is now available from:
-
-  <https://ignitecoincore.org/bin/ignitecoin-core-*version*/>
-
-This release includes new features, various bug fixes and performance
-improvements, as well as updated translations.
+This is a new minor version release, including new features, various bug
+fixes and performance improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/ignitecoin/ignitecoin/issues>
+  <https://github.com/bitcoin/bitcoin/issues>
 
 To receive security and update notifications, please subscribe to:
 
-  <https://ignitecoincore.org/en/list/announcements/join/>
+  <https://bitcoincore.org/en/list/announcements/join/>
 
 How to Upgrade
 ==============
 
-If you are running an older version, shut it down. Wait until it has completely
-shut down (which might take a few minutes in some cases), then run the
-installer (on Windows) or just copy over `/Applications/Ignitecoin-Qt` (on Mac)
-or `ignitecoind`/`ignitecoin-qt` (on Linux).
+If you are running an older version, shut it down. Wait until it has
+completely shut down (which might take a few minutes for older
+versions), then run the installer (on Windows) or just copy over
+`/Applications/Bitcoin-Qt` (on Mac) or `bitcoind`/`bitcoin-qt` (on
+Linux).
 
-Upgrading directly from a version of Ignitecoin Core that has reached its EOL is
-possible, but it might take some time if the data directory needs to be migrated. Old
-wallet versions of Ignitecoin Core are generally supported.
+The first time you run version 0.15.0 or newer, your chainstate database
+will be converted to a new format, which will take anywhere from a few
+minutes to half an hour, depending on the speed of your machine.
+
+Note that the block database format also changed in version 0.8.0 and
+there is no automatic upgrade code from before version 0.8 to version
+0.15.0 or later. Upgrading directly from 0.7.x and earlier without
+redownloading the blockchain is not supported.  However, as usual, old
+wallet versions are still supported.
 
 Compatibility
 ==============
 
-Ignitecoin Core is supported and extensively tested on operating systems
-using the Linux kernel, macOS 10.14+, and Windows 7 and newer.  Ignitecoin
-Core should also work on most other Unix-like systems but is not as
-frequently tested on them.  It is not recommended to use Ignitecoin Core on
-unsupported systems.
+Bitcoin Core is supported and extensively tested on operating systems
+using the Linux kernel, macOS 10.10+, and Windows 7 and newer. It is not
+recommended to use Bitcoin Core on unsupported systems.
 
-From Ignitecoin Core 22.0 onwards, macOS versions earlier than 10.14 are no longer supported.
+Bitcoin Core should also work on most other Unix-like systems but is not
+as frequently tested on them.
+
+From 0.17.0 onwards, macOS <10.10 is no longer supported. 0.17.0 is
+built using Qt 5.9.x, which doesn't support versions of macOS older than
+10.10. Additionally, Bitcoin Core does not yet change appearance when
+macOS "dark mode" is activated.
+
+Known issues
+============
+
+Wallet GUI
+----------
+
+For advanced users who have both (1) enabled coin control features, and
+(2) are using multiple wallets loaded at the same time: The coin control
+input selection dialog can erroneously retain wrong-wallet state when
+switching wallets using the dropdown menu. For now, it is recommended
+not to use coin control features with multiple wallets loaded.
 
 Notable changes
 ===============
 
-P2P and network changes
------------------------
 
-- Added NAT-PMP port mapping support via
-  [`libnatpmp`](https://miniupnp.tuxfamily.org/libnatpmp.html). (#18077)
-
-Updated RPCs
-------------
-
-- Due to [BIP 350](https://github.com/ignitecoin/bips/blob/master/bip-0350.mediawiki)
-  being implemented, behavior for all RPCs that accept addresses is changed when
-  a native witness version 1 (or higher) is passed. These now require a Bech32m
-  encoding instead of a Bech32 one, and Bech32m encoding will be used for such
-  addresses in RPC output as well. No version 1 addresses should be created
-  for mainnet until consensus rules are adopted that give them meaning
-  (e.g. through [BIP 341](https://github.com/ignitecoin/bips/blob/master/bip-0341.mediawiki)).
-  Once that happens, Bech32m is expected to be used for them, so this shouldn't
-  affect any production systems, but may be observed on other networks where such
-  addresses already have meaning (like signet). (#20861)
-
-- The `getpeerinfo` RPC returns two new boolean fields, `bip152_hb_to` and
-  `bip152_hb_from`, that respectively indicate whether we selected a peer to be
-  in compact blocks high-bandwidth mode or whether a peer selected us as a
-  compact blocks high-bandwidth peer. High-bandwidth peers send new block
-  announcements via a `cmpctblock` message rather than the usual inv/headers
-  announcements. See BIP 152 for more details. (#19776)
-
-- `getpeerinfo` no longer returns the following fields: `addnode`, `banscore`,
-  and `whitelisted`, which were previously deprecated in 0.21. Instead of
-  `addnode`, the `connection_type` field returns manual. Instead of
-  `whitelisted`, the `permissions` field indicates if the peer has special
-  privileges. The `banscore` field has simply been removed. (#20755)
-
-- The following RPCs:  `gettxout`, `getrawtransaction`, `decoderawtransaction`,
-  `decodescript`, `gettransaction`, and REST endpoints: `/rest/tx`,
-  `/rest/getutxos`, `/rest/block` deprecated the following fields (which are no
-  longer returned in the responses by default): `addresses`, `reqSigs`.
-  The `-deprecatedrpc=addresses` flag must be passed for these fields to be
-  included in the RPC response. This flag/option will be available only for this major release, after which
-  the deprecation will be removed entirely. Note that these fields are attributes of
-  the `scriptPubKey` object returned in the RPC response. However, in the response
-  of `decodescript` these fields are top-level attributes, and included again as attributes
-  of the `scriptPubKey` object. (#20286)
-
-- When creating a hex-encoded ignitecoin transaction using the `ignitecoin-tx` utility
-  with the `-json` option set, the following fields: `addresses`, `reqSigs` are no longer
-  returned in the tx output of the response. (#20286)
-
-Changes to Wallet or GUI related RPCs can be found in the GUI or Wallet section below.
-
-New RPCs
---------
-
-Build System
-------------
-
-New settings
-------------
-
-- The `-natpmp` option has been added to use NAT-PMP to map the listening port.
-  If both UPnP and NAT-PMP are enabled, a successful allocation from UPnP
-  prevails over one from NAT-PMP. (#18077)
-
-Updated settings
-----------------
-
-Changes to Wallet or GUI related settings can be found in the GUI or Wallet section below.
-
-- Passing an invalid `-rpcauth` argument now cause ignitecoind to fail to start.  (#20461)
-
-Tools and Utilities
--------------------
-
-Wallet
-------
-
-- A new `listdescriptors` RPC is available to inspect the contents of descriptor-enabled wallets.
-  The RPC returns public versions of all imported descriptors, including their timestamp and flags.
-  For ranged descriptors, it also returns the range boundaries and the next index to generate addresses from. (#20226)
-
-- The `bumpfee` RPC is not available with wallets that have private keys
-  disabled. `psbtbumpfee` can be used instead. (#20891)
-
-GUI changes
------------
-
-Low-level changes
+0.18.x change log
 =================
 
-RPC
----
-
-- The RPC server can process a limited number of simultaneous RPC requests.
-  Previously, if this limit was exceeded, the RPC server would respond with
-  [status code 500 (`HTTP_INTERNAL_SERVER_ERROR`)](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_server_errors).
-  Now it returns status code 503 (`HTTP_SERVICE_UNAVAILABLE`). (#18335)
-
-- Error codes have been updated to be more accurate for the following error cases (#18466):
-  - `signmessage` now returns RPC_INVALID_ADDRESS_OR_KEY (-5) if the
-    passed address is invalid. Previously returned RPC_TYPE_ERROR (-3).
-  - `verifymessage` now returns RPC_INVALID_ADDRESS_OR_KEY (-5) if the
-    passed address is invalid. Previously returned RPC_TYPE_ERROR (-3).
-  - `verifymessage` now returns RPC_TYPE_ERROR (-3) if the passed signature
-    is malformed. Previously returned RPC_INVALID_ADDRESS_OR_KEY (-5).
-
-Tests
------
 
 Credits
 =======
@@ -170,5 +73,4 @@ Credits
 Thanks to everyone who directly contributed to this release:
 
 
-As well as to everyone that helped with translations on
-[Transifex](https://www.transifex.com/ignitecoin/ignitecoin/).
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/bitcoin/).

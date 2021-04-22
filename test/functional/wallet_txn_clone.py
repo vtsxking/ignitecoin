@@ -1,21 +1,23 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2020 The Ignitecoin Core developers
+# Copyright (c) 2014-2018 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the wallet accounts properly when there are cloned transactions with malleated scriptsigs."""
 
 import io
-from test_framework.test_framework import IgnitecoinTestFramework
+from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import (
     assert_equal,
+    bytes_to_hex_str as b2x,
+    connect_nodes,
+    disconnect_nodes,
+    sync_blocks,
 )
 from test_framework.messages import CTransaction, COIN
 
-
-class TxnMallTest(IgnitecoinTestFramework):
+class TxnMallTest(BitcoinTestFramework):
     def set_test_params(self):
-        self.num_nodes = 3
-        self.supports_cli = False
+        self.num_nodes = 4
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()
@@ -24,12 +26,13 @@ class TxnMallTest(IgnitecoinTestFramework):
         parser.add_argument("--mineblock", dest="mine_block", default=False, action="store_true",
                             help="Test double-spend of 1-confirmed transaction")
         parser.add_argument("--segwit", dest="segwit", default=False, action="store_true",
-                            help="Test behaviour with SegWit txn (which should fail)")
+                            help="Test behaviour with SegWit txn (which should fail")
 
     def setup_network(self):
         # Start with split network:
-        super().setup_network()
-        self.disconnect_nodes(1, 2)
+        super(TxnMallTest, self).setup_network()
+        disconnect_nodes(self.nodes[1], 2)
+        disconnect_nodes(self.nodes[2], 1)
 
     def run_test(self):
         if self.options.segwit:
@@ -37,10 +40,11 @@ class TxnMallTest(IgnitecoinTestFramework):
         else:
             output_type = "legacy"
 
-        # All nodes should start with 1,250 IGNC:
+        # All nodes should start with 1,250 BTC:
         starting_balance = 1250
-        for i in range(3):
+        for i in range(4):
             assert_equal(self.nodes[i].getbalance(), starting_balance)
+            self.nodes[i].getnewaddress()  # bug workaround, coins generated assigned to first getnewaddress!
 
         self.nodes[0].settxfee(.001)
 
@@ -65,8 +69,8 @@ class TxnMallTest(IgnitecoinTestFramework):
         # Construct a clone of tx1, to be malleated
         rawtx1 = self.nodes[0].getrawtransaction(txid1, 1)
         clone_inputs = [{"txid": rawtx1["vin"][0]["txid"], "vout": rawtx1["vin"][0]["vout"], "sequence": rawtx1["vin"][0]["sequence"]}]
-        clone_outputs = {rawtx1["vout"][0]["scriptPubKey"]["address"]: rawtx1["vout"][0]["value"],
-                         rawtx1["vout"][1]["scriptPubKey"]["address"]: rawtx1["vout"][1]["value"]}
+        clone_outputs = {rawtx1["vout"][0]["scriptPubKey"]["addresses"][0]: rawtx1["vout"][0]["value"],
+                         rawtx1["vout"][1]["scriptPubKey"]["addresses"][0]: rawtx1["vout"][1]["value"]}
         clone_locktime = rawtx1["locktime"]
         clone_raw = self.nodes[0].createrawtransaction(clone_inputs, clone_outputs, clone_locktime)
 
@@ -78,18 +82,18 @@ class TxnMallTest(IgnitecoinTestFramework):
 
         # Use a different signature hash type to sign.  This creates an equivalent but malleated clone.
         # Don't send the clone anywhere yet
-        tx1_clone = self.nodes[0].signrawtransactionwithwallet(clone_tx.serialize().hex(), None, "ALL|ANYONECANPAY")
+        tx1_clone = self.nodes[0].signrawtransactionwithwallet(b2x(clone_tx.serialize()), None, "ALL|ANYONECANPAY")
         assert_equal(tx1_clone["complete"], True)
 
         # Have node0 mine a block, if requested:
         if (self.options.mine_block):
             self.nodes[0].generate(1)
-            self.sync_blocks(self.nodes[0:2])
+            sync_blocks(self.nodes[0:2])
 
         tx1 = self.nodes[0].gettransaction(txid1)
         tx2 = self.nodes[0].gettransaction(txid2)
 
-        # Node0's balance should be starting balance, plus 50IGNC for another
+        # Node0's balance should be starting balance, plus 50BTC for another
         # matured block, minus tx1 and tx2 amounts, and minus transaction fees:
         expected = starting_balance + node0_tx1["fee"] + node0_tx2["fee"]
         if self.options.mine_block:
@@ -116,11 +120,11 @@ class TxnMallTest(IgnitecoinTestFramework):
         self.nodes[2].generate(1)
 
         # Reconnect the split network, and sync chain:
-        self.connect_nodes(1, 2)
+        connect_nodes(self.nodes[1], 2)
         self.nodes[2].sendrawtransaction(node0_tx2["hex"])
         self.nodes[2].sendrawtransaction(tx2["hex"])
         self.nodes[2].generate(1)  # Mine another block to make sure we sync
-        self.sync_blocks()
+        sync_blocks(self.nodes)
 
         # Re-fetch transaction info:
         tx1 = self.nodes[0].gettransaction(txid1)
@@ -132,13 +136,12 @@ class TxnMallTest(IgnitecoinTestFramework):
         assert_equal(tx1_clone["confirmations"], 2)
         assert_equal(tx2["confirmations"], 1)
 
-        # Check node0's total balance; should be same as before the clone, + 100 IGNC for 2 matured,
+        # Check node0's total balance; should be same as before the clone, + 100 BTC for 2 matured,
         # less possible orphaned matured subsidy
         expected += 100
         if (self.options.mine_block):
             expected -= 50
         assert_equal(self.nodes[0].getbalance(), expected)
-
 
 if __name__ == '__main__':
     TxnMallTest().main()
