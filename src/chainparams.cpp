@@ -128,7 +128,7 @@ public:
         //vSeeds.emplace_back("seed.btc.petertodd.org"); // Peter Todd, only supports x1, x5, x9, and xd
         //vSeeds.emplace_back("seed.ignitecoin.sprovoost.nl"); // Sjors Provoost
         //vSeeds.emplace_back("dnsseed.emzy.de"); // Stephan Oeste
-        vSeeds.emplace_back("165.232.144.77:3333")
+        vSeeds.emplace_back("165.232.144.77:3333");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,70); // V
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,65); // T
