@@ -1,0 +1,4 @@
+qt/libignitecoinqt_a-qrc_ignitecoin_locale.o: \
+ qt/qrc_ignitecoin_locale.cpp /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:
