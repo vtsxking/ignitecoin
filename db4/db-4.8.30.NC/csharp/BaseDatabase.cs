@@ -17,7 +17,7 @@ namespace BerkeleyDB {
         internal DB db;
         protected internal DatabaseEnvironment env;
         protected internal bool isOpen;
-        private DBTCopyDelegate CopyDelegate;
+        private DIGNCopyDelegate CopyDelegate;
         private EntryComparisonDelegate dupCompareHandler;
         private DatabaseFeedbackDelegate feedbackHandler;
         private BDB_CompareDelegate doDupCompareRef;

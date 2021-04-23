@@ -21,7 +21,7 @@
 #include "dbinc/tcl_db.h"
 
 /* XXX we must declare global data in just one place */
-DBTCL_GLOBAL __dbtcl_global;
+DIGNCL_GLOBAL __digncl_global;
 
 /*
  * Prototypes for procedures defined later in this file:
@@ -29,22 +29,22 @@ DBTCL_GLOBAL __dbtcl_global;
 static int	berkdb_Cmd __P((ClientData, Tcl_Interp *, int,
     Tcl_Obj * CONST*));
 static int	bdb_EnvOpen __P((Tcl_Interp *, int, Tcl_Obj * CONST*,
-    DBTCL_INFO *, DB_ENV **));
+    DIGNCL_INFO *, DB_ENV **));
 static int	bdb_DbOpen __P((Tcl_Interp *, int, Tcl_Obj * CONST*,
-    DBTCL_INFO *, DB **));
+    DIGNCL_INFO *, DB **));
 static int	bdb_DbRemove __P((Tcl_Interp *, int, Tcl_Obj * CONST*));
 static int	bdb_DbRename __P((Tcl_Interp *, int, Tcl_Obj * CONST*));
 static int	bdb_Version __P((Tcl_Interp *, int, Tcl_Obj * CONST*));
 
 #ifdef HAVE_64BIT_TYPES
 static int	bdb_SeqOpen __P((Tcl_Interp *, int, Tcl_Obj * CONST*,
-    DBTCL_INFO *, DB_SEQUENCE **));
+    DIGNCL_INFO *, DB_SEQUENCE **));
 #endif
 
 #ifdef CONFIG_TEST
 static int	bdb_DbUpgrade __P((Tcl_Interp *, int, Tcl_Obj * CONST*));
 static int	bdb_DbVerify __P((Tcl_Interp *, int, Tcl_Obj * CONST*,
-    DBTCL_INFO *));
+    DIGNCL_INFO *));
 static int	bdb_GetConfig __P((Tcl_Interp *, int, Tcl_Obj * CONST*));
 static int	bdb_Handles __P((Tcl_Interp *, int, Tcl_Obj * CONST*));
 static int	bdb_MsgType __P((Tcl_Interp *, int, Tcl_Obj * CONST*));
@@ -210,7 +210,7 @@ berkdb_Cmd(notused, interp, objc, objv)
 	DBM *ndbmp;
 	static int ndbm_id = 0;
 #endif
-	DBTCL_INFO *ip;
+	DIGNCL_INFO *ip;
 	DB_ENV *dbenv;
 	Tcl_Obj *res;
 	int cmdindex, result;
@@ -352,7 +352,7 @@ berkdb_Cmd(notused, interp, objc, objv)
 	case BDB_DELETEX:
 	case BDB_FIRSTKEYX:
 	case BDB_NEXTKEYX:
-		result = bdb_DbmCommand(interp, objc, objv, DBTCL_DBM, NULL);
+		result = bdb_DbmCommand(interp, objc, objv, DIGNCL_DBM, NULL);
 		break;
 	case BDB_NDBMOPENX:
 		snprintf(newname, sizeof(newname), "ndbm%d", ndbm_id);
@@ -412,7 +412,7 @@ bdb_EnvOpen(interp, objc, objv, ip, dbenvp)
 	Tcl_Interp *interp;		/* Interpreter */
 	int objc;			/* How many arguments? */
 	Tcl_Obj *CONST objv[];		/* The argument objects */
-	DBTCL_INFO *ip;			/* Our internal info */
+	DIGNCL_INFO *ip;			/* Our internal info */
 	DB_ENV **dbenvp;		/* Environment pointer */
 {
 	static const char *envopen[] = {
@@ -616,7 +616,7 @@ bdb_EnvOpen(interp, objc, objv, ip, dbenvp)
 	 * -thread flag, so that we can exercise MUTEX_THREAD_LOCK cases.
 	 *
 	 * In order to become truly thread-safe, we need to look at making sure
-	 * DBTCL_INFO structs are safe to share across threads (they're not
+	 * DIGNCL_INFO structs are safe to share across threads (they're not
 	 * mutex-protected) before we declare the Tcl interface thread-safe.
 	 * Meanwhile, there's no strong reason to enable DB_THREAD when not
 	 * testing.
@@ -917,16 +917,16 @@ bdb_EnvOpen(interp, objc, objv, ip, dbenvp)
 			intarg = 0;
 			switch ((enum envopen)optindex) {
 			case TCL_ENV_MUTSETALIGN:
-				intarg = DBTCL_MUT_ALIGN;
+				intarg = DIGNCL_MUT_ALIGN;
 				break;
 			case TCL_ENV_MUTSETINCR:
-				intarg = DBTCL_MUT_INCR;
+				intarg = DIGNCL_MUT_INCR;
 				break;
 			case TCL_ENV_MUTSETMAX:
-				intarg = DBTCL_MUT_MAX;
+				intarg = DIGNCL_MUT_MAX;
 				break;
 			case TCL_ENV_MUTSETTAS:
-				intarg = DBTCL_MUT_TAS;
+				intarg = DIGNCL_MUT_TAS;
 				break;
 			default:
 				break;
@@ -1599,7 +1599,7 @@ bdb_DbOpen(interp, objc, objv, ip, dbp)
 	Tcl_Interp *interp;		/* Interpreter */
 	int objc;			/* How many arguments? */
 	Tcl_Obj *CONST objv[];		/* The argument objects */
-	DBTCL_INFO *ip;			/* Our internal info */
+	DIGNCL_INFO *ip;			/* Our internal info */
 	DB **dbp;			/* DB handle */
 {
 	static const char *bdbenvopen[] = {
@@ -1610,7 +1610,7 @@ bdb_DbOpen(interp, objc, objv, ip, dbp)
 	};
 	static const char *bdbopen[] = {
 #ifdef CONFIG_TEST
-		"-btcompare",
+		"-igncompare",
 		"-dupcompare",
 		"-hashcompare",
 		"-hashproc",
@@ -1669,7 +1669,7 @@ bdb_DbOpen(interp, objc, objv, ip, dbp)
 	};
 	enum bdbopen {
 #ifdef CONFIG_TEST
-		TCL_DB_BTCOMPARE,
+		TCL_DB_IGNCOMPARE,
 		TCL_DB_DUPCOMPARE,
 		TCL_DB_HASHCOMPARE,
 		TCL_DB_HASHPROC,
@@ -1726,7 +1726,7 @@ bdb_DbOpen(interp, objc, objv, ip, dbp)
 		TCL_DB_ENDARG
 	};
 	DBT *keys;
-	DBTCL_INFO *envip, *errip;
+	DIGNCL_INFO *envip, *errip;
 	DBTYPE type;
 	DB_ENV *dbenv;
 	DB_TXN *txn;
@@ -1754,7 +1754,7 @@ bdb_DbOpen(interp, objc, objv, ip, dbp)
 	 * -thread flag, so that we can exercise MUTEX_THREAD_LOCK cases.
 	 *
 	 * In order to become truly thread-safe, we need to look at making sure
-	 * DBTCL_INFO structs are safe to share across threads (they're not
+	 * DIGNCL_INFO structs are safe to share across threads (they're not
 	 * mutex-protected) before we declare the Tcl interface thread-safe.
 	 * Meanwhile, there's no strong reason to enable DB_THREAD when not
 	 * testing.
@@ -1855,10 +1855,10 @@ bdb_DbOpen(interp, objc, objv, ip, dbp)
 		i++;
 		switch ((enum bdbopen)optindex) {
 #ifdef CONFIG_TEST
-		case TCL_DB_BTCOMPARE:
+		case TCL_DB_IGNCOMPARE:
 			if (i >= objc) {
 				Tcl_WrongNumArgs(interp, 2, objv,
-				    "-btcompare compareproc");
+				    "-igncompare compareproc");
 				result = TCL_ERROR;
 				break;
 			}
@@ -1887,7 +1887,7 @@ bdb_DbOpen(interp, objc, objv, ip, dbp)
 
 			/*
 			 * Store the object containing the procedure name.
-			 * See TCL_DB_BTCOMPARE.
+			 * See TCL_DB_IGNCOMPARE.
 			 */
 			ip->i_dupcompare = objv[i++];
 			Tcl_IncrRefCount(ip->i_dupcompare);
@@ -1928,7 +1928,7 @@ bdb_DbOpen(interp, objc, objv, ip, dbp)
 
 			/*
 			 * Store the object containing the procedure name.
-			 * See TCL_DB_BTCOMPARE.
+			 * See TCL_DB_IGNCOMPARE.
 			 */
 			ip->i_hashproc = objv[i++];
 			Tcl_IncrRefCount(ip->i_hashproc);
@@ -1983,7 +1983,7 @@ bdb_DbOpen(interp, objc, objv, ip, dbp)
 
 			/*
 			 * Store the object containing the procedure name.
-			 * See TCL_DB_BTCOMPARE.
+			 * See TCL_DB_IGNCOMPARE.
 			 */
 			result = _GetUInt32(interp, objv[i++], &uintarg);
 			if (result != TCL_OK)
@@ -2526,7 +2526,7 @@ bdb_SeqOpen(interp, objc, objv, ip, seqp)
 	Tcl_Interp *interp;		/* Interpreter */
 	int objc;			/* How many arguments? */
 	Tcl_Obj *CONST objv[];		/* The argument objects */
-	DBTCL_INFO *ip;			/* Our internal info */
+	DIGNCL_INFO *ip;			/* Our internal info */
 	DB_SEQUENCE **seqp;		/* DB_SEQUENCE handle */
 {
 	static const char *seqopen[] = {
@@ -3223,10 +3223,10 @@ bdb_DbVerify(interp, objc, objv, ip)
 	Tcl_Interp *interp;		/* Interpreter */
 	int objc;			/* How many arguments? */
 	Tcl_Obj *CONST objv[];		/* The argument objects */
-	DBTCL_INFO *ip;			/* Our internal info */
+	DIGNCL_INFO *ip;			/* Our internal info */
 {
 	static const char *bdbverify[] = {
-		"-btcompare",
+		"-igncompare",
 		"-dupcompare",
 		"-hashcompare",
 		"-hashproc",
@@ -3244,7 +3244,7 @@ bdb_DbVerify(interp, objc, objv, ip)
 		NULL
 	};
 	enum bdbvrfy {
-		TCL_DBVRFY_BTCOMPARE,
+		TCL_DBVRFY_IGNCOMPARE,
 		TCL_DBVRFY_DUPCOMPARE,
 		TCL_DBVRFY_HASHCOMPARE,
 		TCL_DBVRFY_HASHPROC,
@@ -3308,10 +3308,10 @@ bdb_DbVerify(interp, objc, objv, ip)
 		}
 		i++;
 		switch ((enum bdbvrfy)optindex) {
-		case TCL_DBVRFY_BTCOMPARE:
+		case TCL_DBVRFY_IGNCOMPARE:
 			if (i >= objc) {
 				Tcl_WrongNumArgs(interp, 2, objv,
-				    "-btcompare compareproc");
+				    "-igncompare compareproc");
 				result = TCL_ERROR;
 				break;
 			}
@@ -3338,7 +3338,7 @@ bdb_DbVerify(interp, objc, objv, ip)
 
 			/*
 			 * Store the object containing the procedure name.
-			 * See TCL_DBVRFY_BTCOMPARE.
+			 * See TCL_DBVRFY_IGNCOMPARE.
 			 */
 			ip->i_dupcompare = objv[i++];
 			Tcl_IncrRefCount(ip->i_dupcompare);
@@ -3375,7 +3375,7 @@ bdb_DbVerify(interp, objc, objv, ip)
 
 			/*
 			 * Store the object containing the procedure name.
-			 * See TCL_DBVRFY_BTCOMPARE.
+			 * See TCL_DBVRFY_IGNCOMPARE.
 			 */
 			ip->i_hashproc = objv[i++];
 			Tcl_IncrRefCount(ip->i_hashproc);
@@ -3742,7 +3742,7 @@ bdb_Handles(interp, objc, objv)
 	int objc;			/* How many arguments? */
 	Tcl_Obj *CONST objv[];		/* The argument objects */
 {
-	DBTCL_INFO *p;
+	DIGNCL_INFO *p;
 	Tcl_Obj *res, *handle;
 
 	/*
@@ -3950,7 +3950,7 @@ tcl_bt_compare(dbp, dbta, dbtb)
 	const DBT *dbta, *dbtb;
 {
 	return (tcl_compare_callback(dbp, dbta, dbtb,
-	    ((DBTCL_INFO *)dbp->api_internal)->i_compare, "bt_compare"));
+	    ((DIGNCL_INFO *)dbp->api_internal)->i_compare, "bt_compare"));
 }
 
 static int
@@ -3959,7 +3959,7 @@ tcl_dup_compare(dbp, dbta, dbtb)
 	const DBT *dbta, *dbtb;
 {
 	return (tcl_compare_callback(dbp, dbta, dbtb,
-	    ((DBTCL_INFO *)dbp->api_internal)->i_dupcompare, "dup_compare"));
+	    ((DIGNCL_INFO *)dbp->api_internal)->i_dupcompare, "dup_compare"));
 }
 
 /*
@@ -3976,12 +3976,12 @@ tcl_compare_callback(dbp, dbta, dbtb, procobj, errname)
 	Tcl_Obj *procobj;
 	char *errname;
 {
-	DBTCL_INFO *ip;
+	DIGNCL_INFO *ip;
 	Tcl_Interp *interp;
 	Tcl_Obj *a, *b, *resobj, *objv[3];
 	int result, cmp;
 
-	ip = (DBTCL_INFO *)dbp->api_internal;
+	ip = (DIGNCL_INFO *)dbp->api_internal;
 	interp = ip->i_interp;
 	objv[0] = procobj;
 
@@ -4041,12 +4041,12 @@ tcl_h_hash(dbp, buf, len)
 	const void *buf;
 	u_int32_t len;
 {
-	DBTCL_INFO *ip;
+	DIGNCL_INFO *ip;
 	Tcl_Interp *interp;
 	Tcl_Obj *objv[2];
 	int result, hval;
 
-	ip = (DBTCL_INFO *)dbp->api_internal;
+	ip = (DIGNCL_INFO *)dbp->api_internal;
 	interp = ip->i_interp;
 	objv[0] = ip->i_hashproc;
 
@@ -4080,7 +4080,7 @@ tcl_isalive(dbenv, pid, tid, flags)
 	u_int32_t flags;
 {
 	ENV *env;
-	DBTCL_INFO *ip;
+	DIGNCL_INFO *ip;
 	Tcl_Interp *interp;
 	Tcl_Obj *objv[2];
 	pid_t mypid;
@@ -4098,7 +4098,7 @@ tcl_isalive(dbenv, pid, tid, flags)
 	if (!LF_ISSET(DB_MUTEX_PROCESS_ONLY))
 		return (1);
 
-	ip = (DBTCL_INFO *)dbenv->app_private;
+	ip = (DIGNCL_INFO *)dbenv->app_private;
 	interp = ip->i_interp;
 	objv[0] = ip->i_isalive;
 
@@ -4132,12 +4132,12 @@ tcl_part_callback(dbp, data)
 	DB *dbp;
 	DBT *data;
 {
-	DBTCL_INFO *ip;
+	DIGNCL_INFO *ip;
 	Tcl_Interp *interp;
 	Tcl_Obj *objv[2];
 	int result, hval;
 
-	ip = (DBTCL_INFO *)dbp->api_internal;
+	ip = (DIGNCL_INFO *)dbp->api_internal;
 	interp = ip->i_interp;
 	objv[0] = ip->i_part_callback;
 
@@ -4178,14 +4178,14 @@ tcl_rep_send(dbenv, control, rec, lsnp, eid, flags)
 {
 #define	TCLDB_SENDITEMS	7
 #define	TCLDB_MAXREPFLAGS 32
-	DBTCL_INFO *ip;
+	DIGNCL_INFO *ip;
 	Tcl_Interp *interp;
 	Tcl_Obj *control_o, *eid_o, *flags_o, *lsn_o, *origobj, *rec_o;
 	Tcl_Obj *lsnobj[2], *myobjv[TCLDB_MAXREPFLAGS], *objv[TCLDB_SENDITEMS];
 	Tcl_Obj *resobj;
 	int i, myobjc, result, ret;
 
-	ip = (DBTCL_INFO *)dbenv->app_private;
+	ip = (DIGNCL_INFO *)dbenv->app_private;
 	interp = ip->i_interp;
 	objv[0] = ip->i_rep_send;
 

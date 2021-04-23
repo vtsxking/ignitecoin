@@ -15,7 +15,7 @@
 #include "dbinc/tcl_db.h"
 
 static int tcl_TxnCommit __P((Tcl_Interp *,
-	       int, Tcl_Obj * CONST *, DB_TXN *, DBTCL_INFO *));
+	       int, Tcl_Obj * CONST *, DB_TXN *, DIGNCL_INFO *));
 static int txn_Cmd __P((ClientData, Tcl_Interp *, int, Tcl_Obj * CONST *));
 
 /*
@@ -25,14 +25,14 @@ static int txn_Cmd __P((ClientData, Tcl_Interp *, int, Tcl_Obj * CONST *));
  *	RECURSIVE:  Transactions can be arbitrarily nested, so we
  *	must recurse down until we get them all.
  *
- * PUBLIC: void _TxnInfoDelete __P((Tcl_Interp *, DBTCL_INFO *));
+ * PUBLIC: void _TxnInfoDelete __P((Tcl_Interp *, DIGNCL_INFO *));
  */
 void
 _TxnInfoDelete(interp, txnip)
 	Tcl_Interp *interp;		/* Interpreter */
-	DBTCL_INFO *txnip;		/* Info for txn */
+	DIGNCL_INFO *txnip;		/* Info for txn */
 {
-	DBTCL_INFO *nextp, *p;
+	DIGNCL_INFO *nextp, *p;
 
 	for (p = LIST_FIRST(&__db_infohead); p != NULL; p = nextp) {
 		/*
@@ -125,7 +125,7 @@ tcl_TxnCheckpoint(interp, objc, objv, dbenv)
  * tcl_Txn --
  *
  * PUBLIC: int tcl_Txn __P((Tcl_Interp *, int,
- * PUBLIC:    Tcl_Obj * CONST*, DB_ENV *, DBTCL_INFO *));
+ * PUBLIC:    Tcl_Obj * CONST*, DB_ENV *, DIGNCL_INFO *));
  */
 int
 tcl_Txn(interp, objc, objv, dbenv, envip)
@@ -133,7 +133,7 @@ tcl_Txn(interp, objc, objv, dbenv, envip)
 	int objc;			/* How many arguments? */
 	Tcl_Obj *CONST objv[];		/* The argument objects */
 	DB_ENV *dbenv;			/* Environment pointer */
-	DBTCL_INFO *envip;		/* Info pointer */
+	DIGNCL_INFO *envip;		/* Info pointer */
 {
 	static const char *txnopts[] = {
 #ifdef CONFIG_TEST
@@ -166,7 +166,7 @@ tcl_Txn(interp, objc, objv, dbenv, envip)
 		TXNSYNC,
 		TXNWRNOSYNC
 	};
-	DBTCL_INFO *ip;
+	DIGNCL_INFO *ip;
 	DB_TXN *parent;
 	DB_TXN *txn;
 	Tcl_Obj *res;
@@ -314,7 +314,7 @@ get_timeout:		if (i >= objc) {
  * tcl_CDSGroup --
  *
  * PUBLIC: int tcl_CDSGroup __P((Tcl_Interp *, int,
- * PUBLIC:    Tcl_Obj * CONST*, DB_ENV *, DBTCL_INFO *));
+ * PUBLIC:    Tcl_Obj * CONST*, DB_ENV *, DIGNCL_INFO *));
  */
 int
 tcl_CDSGroup(interp, objc, objv, dbenv, envip)
@@ -322,9 +322,9 @@ tcl_CDSGroup(interp, objc, objv, dbenv, envip)
 	int objc;			/* How many arguments? */
 	Tcl_Obj *CONST objv[];		/* The argument objects */
 	DB_ENV *dbenv;			/* Environment pointer */
-	DBTCL_INFO *envip;		/* Info pointer */
+	DIGNCL_INFO *envip;		/* Info pointer */
 {
-	DBTCL_INFO *ip;
+	DIGNCL_INFO *ip;
 	DB_TXN *txn;
 	Tcl_Obj *res;
 	int result, ret;
@@ -380,7 +380,7 @@ tcl_TxnStat(interp, objc, objv, dbenv)
 	Tcl_Obj *CONST objv[];		/* The argument objects */
 	DB_ENV *dbenv;			/* Environment pointer */
 {
-	DBTCL_INFO *ip;
+	DIGNCL_INFO *ip;
 	DB_TXN_ACTIVE *p;
 	DB_TXN_STAT *sp;
 	Tcl_Obj *myobjv[2], *res, *thislist, *lsnlist;
@@ -517,7 +517,7 @@ txn_Cmd(clientData, interp, objc, objv)
 		TXNABORT,
 		TXNCOMMIT
 	};
-	DBTCL_INFO *txnip;
+	DIGNCL_INFO *txnip;
 	DB_TXN *txnp;
 	Tcl_Obj *res;
 	int cmdindex, result, ret;
@@ -649,7 +649,7 @@ tcl_TxnCommit(interp, objc, objv, txnp, txnip)
 	int objc;			/* How many arguments? */
 	Tcl_Obj *CONST objv[];		/* The argument objects */
 	DB_TXN *txnp;			/* Transaction pointer */
-	DBTCL_INFO *txnip;		/* Info pointer */
+	DIGNCL_INFO *txnip;		/* Info pointer */
 {
 	static const char *commitopt[] = {
 		"-nosync",
@@ -702,7 +702,7 @@ tcl_TxnCommit(interp, objc, objv, txnp, txnip)
  * tcl_TxnRecover --
  *
  * PUBLIC: int tcl_TxnRecover __P((Tcl_Interp *, int,
- * PUBLIC:    Tcl_Obj * CONST*, DB_ENV *, DBTCL_INFO *));
+ * PUBLIC:    Tcl_Obj * CONST*, DB_ENV *, DIGNCL_INFO *));
  */
 int
 tcl_TxnRecover(interp, objc, objv, dbenv, envip)
@@ -710,7 +710,7 @@ tcl_TxnRecover(interp, objc, objv, dbenv, envip)
 	int objc;			/* How many arguments? */
 	Tcl_Obj *CONST objv[];		/* The argument objects */
 	DB_ENV *dbenv;			/* Environment pointer */
-	DBTCL_INFO *envip;		/* Info pointer */
+	DIGNCL_INFO *envip;		/* Info pointer */
 {
 #define	DO_PREPLIST(count)						\
 for (i = 0; i < count; i++) {						\
@@ -734,8 +734,8 @@ for (i = 0; i < count; i++) {						\
 		goto error;						\
 }
 
-	DBTCL_INFO *ip;
-	DB_PREPLIST prep[DBTCL_PREP], *p;
+	DIGNCL_INFO *ip;
+	DB_PREPLIST prep[DIGNCL_PREP], *p;
 	Tcl_Obj *res;
 	u_int32_t count, i;
 	int result, ret;
@@ -750,7 +750,7 @@ for (i = 0; i < count; i++) {						\
 		return (TCL_ERROR);
 	}
 	_debug_check();
-	ret = dbenv->txn_recover(dbenv, prep, DBTCL_PREP, &count, DB_FIRST);
+	ret = dbenv->txn_recover(dbenv, prep, DIGNCL_PREP, &count, DB_FIRST);
 	result = _ReturnSetup(interp, ret, DB_RETOK_STD(ret),
 	    "txn recover");
 	if (result == TCL_ERROR)
@@ -762,9 +762,9 @@ for (i = 0; i < count; i++) {						\
 	 * If count returned is the maximum size we have, then there
 	 * might be more.  Keep going until we get them all.
 	 */
-	while (count == DBTCL_PREP) {
+	while (count == DIGNCL_PREP) {
 		ret = dbenv->txn_recover(
-		    dbenv, prep, DBTCL_PREP, &count, DB_NEXT);
+		    dbenv, prep, DIGNCL_PREP, &count, DB_NEXT);
 		result = _ReturnSetup(interp, ret, DB_RETOK_STD(ret),
 		    "txn recover");
 		if (result == TCL_ERROR)

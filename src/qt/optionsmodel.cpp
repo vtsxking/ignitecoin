@@ -69,7 +69,7 @@ void OptionsModel::Init(bool resetSettings)
 
     // Display
     if (!settings.contains("nDisplayUnit"))
-        settings.setValue("nDisplayUnit", IgnitecoinUnits::BTC);
+        settings.setValue("nDisplayUnit", IgnitecoinUnits::IGNC);
     nDisplayUnit = settings.value("nDisplayUnit").toInt();
 
     if (!settings.contains("strThirdPartyTxUrls"))

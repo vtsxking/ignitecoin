@@ -23,7 +23,7 @@ proc test093 { method {nentries 10000} {tnum "093"} args} {
 	set omethod [convert_method $method]
 
 	if { [is_btree $method] == 1 } {
-		set compflag -btcompare
+		set compflag -igncompare
 	} elseif { [is_hash $method] == 1 } {
 		set compflag -hashcompare
 	} else {

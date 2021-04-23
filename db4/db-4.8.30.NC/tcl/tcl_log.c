@@ -427,7 +427,7 @@ logc_Cmd(clientData, interp, objc, objv)
 		LOGCVERSION
 	};
 	DB_LOGC *logc;
-	DBTCL_INFO *logcip;
+	DIGNCL_INFO *logcip;
 	Tcl_Obj *res;
 	u_int32_t version;
 	int cmdindex, result, ret;

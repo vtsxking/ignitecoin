@@ -99,7 +99,7 @@ BOVERFLOW
 BR
 BREW's
 BSIZE
-BTCOMPARE
+IGNCOMPARE
 BTMETA
 BTREE
 BTREEMAGIC
@@ -257,7 +257,7 @@ DBS
 DBSDIR
 DBT
 DBT's
-DBTCL
+DIGNCL
 DBTList
 DBTYPE
 DBTs
@@ -2194,7 +2194,7 @@ bshift
 bsize
 bsizep
 bt
-btcompare
+igncompare
 btrec
 btree
 btreemeta

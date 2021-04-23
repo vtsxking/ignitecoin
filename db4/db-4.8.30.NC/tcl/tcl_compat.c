@@ -349,7 +349,7 @@ bdb_DbmCommand(interp, objc, objv, flag, dbm)
 			return (TCL_ERROR);
 		}
 		_debug_check();
-		if (flag == DBTCL_DBM)
+		if (flag == DIGNCL_DBM)
 			ret = dbmclose();
 		else {
 			Tcl_SetResult(interp,
@@ -367,7 +367,7 @@ bdb_DbmCommand(interp, objc, objv, flag, dbm)
 			return (TCL_ERROR);
 		}
 		name = Tcl_GetStringFromObj(objv[2], NULL);
-		if (flag == DBTCL_DBM)
+		if (flag == DIGNCL_DBM)
 			ret = dbminit(name);
 		else {
 			Tcl_SetResult(interp, "Bad interface flag for command",
@@ -393,9 +393,9 @@ bdb_DbmCommand(interp, objc, objv, flag, dbm)
 		key.dsize = (int)size;
 		key.dptr = (char *)ktmp;
 		_debug_check();
-		if (flag == DBTCL_DBM)
+		if (flag == DIGNCL_DBM)
 			data = fetch(key);
-		else if (flag == DBTCL_NDBM)
+		else if (flag == DIGNCL_NDBM)
 			data = dbm_fetch(dbm, key);
 		else {
 			Tcl_SetResult(interp,
@@ -417,11 +417,11 @@ bdb_DbmCommand(interp, objc, objv, flag, dbm)
 		/*
 		 * 2 args for this.  Error if different.
 		 */
-		if (objc != 4 && flag == DBTCL_DBM) {
+		if (objc != 4 && flag == DIGNCL_DBM) {
 			Tcl_WrongNumArgs(interp, 2, objv, "key data");
 			return (TCL_ERROR);
 		}
-		if (objc != 5 && flag == DBTCL_NDBM) {
+		if (objc != 5 && flag == DIGNCL_NDBM) {
 			Tcl_WrongNumArgs(interp, 2, objv, "key data action");
 			return (TCL_ERROR);
 		}
@@ -442,9 +442,9 @@ bdb_DbmCommand(interp, objc, objv, flag, dbm)
 		data.dsize = (int)size;
 		data.dptr = (char *)dtmp;
 		_debug_check();
-		if (flag == DBTCL_DBM)
+		if (flag == DIGNCL_DBM)
 			ret = store(key, data);
-		else if (flag == DBTCL_NDBM) {
+		else if (flag == DIGNCL_NDBM) {
 			if (Tcl_GetIndexFromObj(interp, objv[4], stflag,
 			    "flag", TCL_EXACT, &stindex) != TCL_OK)
 				return (IS_HELP(objv[4]));
@@ -481,9 +481,9 @@ bdb_DbmCommand(interp, objc, objv, flag, dbm)
 		key.dsize = (int)size;
 		key.dptr = (char *)ktmp;
 		_debug_check();
-		if (flag == DBTCL_DBM)
+		if (flag == DIGNCL_DBM)
 			ret = delete(key);
-		else if (flag == DBTCL_NDBM)
+		else if (flag == DIGNCL_NDBM)
 			ret = dbm_delete(dbm, key);
 		else {
 			Tcl_SetResult(interp,
@@ -501,9 +501,9 @@ bdb_DbmCommand(interp, objc, objv, flag, dbm)
 			return (TCL_ERROR);
 		}
 		_debug_check();
-		if (flag == DBTCL_DBM)
+		if (flag == DIGNCL_DBM)
 			key = firstkey();
-		else if (flag == DBTCL_NDBM)
+		else if (flag == DIGNCL_NDBM)
 			key = dbm_firstkey(dbm);
 		else {
 			Tcl_SetResult(interp,
@@ -525,7 +525,7 @@ bdb_DbmCommand(interp, objc, objv, flag, dbm)
 		 * 0 or 1 arg for this.  Error if different.
 		 */
 		_debug_check();
-		if (flag == DBTCL_DBM) {
+		if (flag == DIGNCL_DBM) {
 			if (objc != 3) {
 				Tcl_WrongNumArgs(interp, 2, objv, NULL);
 				return (TCL_ERROR);
@@ -539,7 +539,7 @@ bdb_DbmCommand(interp, objc, objv, flag, dbm)
 			key.dsize = (int)size;
 			key.dptr = (char *)ktmp;
 			data = nextkey(key);
-		} else if (flag == DBTCL_NDBM) {
+		} else if (flag == DIGNCL_NDBM) {
 			if (objc != 2) {
 				Tcl_WrongNumArgs(interp, 2, objv, NULL);
 				return (TCL_ERROR);
@@ -610,7 +610,7 @@ ndbm_Cmd(clientData, interp, objc, objv)
 		NDBSTORE
 	};
 	DBM *dbp;
-	DBTCL_INFO *dbip;
+	DIGNCL_INFO *dbip;
 	Tcl_Obj *res;
 	int cmdindex, result, ret;
 
@@ -653,7 +653,7 @@ ndbm_Cmd(clientData, interp, objc, objv)
 	case NDBFIRST:
 	case NDBNEXT:
 	case NDBSTORE:
-		result = bdb_DbmCommand(interp, objc, objv, DBTCL_NDBM, dbp);
+		result = bdb_DbmCommand(interp, objc, objv, DIGNCL_NDBM, dbp);
 		break;
 	case NDBCLRERR:
 		/*

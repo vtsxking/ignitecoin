@@ -86,7 +86,7 @@ proc test115 { method {nentries 10000} {tnum "115"} args } {
 		set did [open $dict]
 
 		puts "\tTest$tnum.a: Create and populate database ($splitopt)."
-		set db [eval {berkdb_open -create -btcompare test093_cmp1 \
+		set db [eval {berkdb_open -create -igncompare test093_cmp1 \
 		    -mode 0644} $splitopt $args $encargs $omethod $testfile]
 		error_check_good dbopen [is_valid_db $db] TRUE
 
@@ -184,7 +184,7 @@ proc test115 { method {nentries 10000} {tnum "115"} args } {
 			}
 			error_check_good db_sync [$db sync] 0
 			if { [catch {eval \
-			    {berkdb dbverify -btcompare test093_cmp1}\
+			    {berkdb dbverify -igncompare test093_cmp1}\
 			    $envargs $encargs {$testfile}} res] } {
 				puts "FAIL: Verification failed with $res"
 			}
@@ -304,7 +304,7 @@ if { [is_partitioned $args] == 0 } {
 			}
 			error_check_good db_sync [$db sync] 0
 			if { [catch {eval \
-			    {berkdb dbverify -btcompare test093_cmp1}\
+			    {berkdb dbverify -igncompare test093_cmp1}\
 			    $envargs $encargs {$testfile}} res] } {
 				puts "FAIL: Verification failed with $res"
 			}

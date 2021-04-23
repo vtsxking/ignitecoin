@@ -1020,10 +1020,10 @@ sub new
 #            if $got->{set_bt_compress} !~ /ARRAY/ ||
 #               @{ $got->{set_bt_compress} } != 2;
 #
-#        $got->{"_btcompress1"} =  $got->{set_bt_compress}[0] 
+#        $got->{"_igncompress1"} =  $got->{set_bt_compress}[0] 
 #            if defined $got->{set_bt_compress}[0];
 #
-#        $got->{"_btcompress2"} =  $got->{set_bt_compress}[1] 
+#        $got->{"_igncompress2"} =  $got->{set_bt_compress}[1] 
 #            if defined $got->{set_bt_compress}[1];
 #    }
 

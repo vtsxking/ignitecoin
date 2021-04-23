@@ -37,7 +37,7 @@
 #define	GLOB_CHAR(c)	((c) == '*' || (c) == '?')
 
 /*
- * PUBLIC: DBTCL_INFO *_NewInfo __P((Tcl_Interp *,
+ * PUBLIC: DIGNCL_INFO *_NewInfo __P((Tcl_Interp *,
  * PUBLIC:    void *, char *, enum INFOTYPE));
  *
  * _NewInfo --
@@ -45,17 +45,17 @@
  * This function will create a new info structure and fill it in
  * with the name and pointer, id and type.
  */
-DBTCL_INFO *
+DIGNCL_INFO *
 _NewInfo(interp, anyp, name, type)
 	Tcl_Interp *interp;
 	void *anyp;
 	char *name;
 	enum INFOTYPE type;
 {
-	DBTCL_INFO *p;
+	DIGNCL_INFO *p;
 	int ret;
 
-	if ((ret = __os_calloc(NULL, sizeof(DBTCL_INFO), 1, &p)) != 0) {
+	if ((ret = __os_calloc(NULL, sizeof(DIGNCL_INFO), 1, &p)) != 0) {
 		Tcl_SetResult(interp, db_strerror(ret), TCL_STATIC);
 		return (NULL);
 	}
@@ -80,7 +80,7 @@ void	*
 _NameToPtr(name)
 	CONST char *name;
 {
-	DBTCL_INFO *p;
+	DIGNCL_INFO *p;
 
 	LIST_FOREACH(p, &__db_infohead, entries)
 		if (strcmp(name, p->i_name) == 0)
@@ -89,13 +89,13 @@ _NameToPtr(name)
 }
 
 /*
- * PUBLIC: DBTCL_INFO *_PtrToInfo __P((CONST void *));
+ * PUBLIC: DIGNCL_INFO *_PtrToInfo __P((CONST void *));
  */
-DBTCL_INFO *
+DIGNCL_INFO *
 _PtrToInfo(ptr)
 	CONST void *ptr;
 {
-	DBTCL_INFO *p;
+	DIGNCL_INFO *p;
 
 	LIST_FOREACH(p, &__db_infohead, entries)
 		if (p->i_anyp == ptr)
@@ -104,13 +104,13 @@ _PtrToInfo(ptr)
 }
 
 /*
- * PUBLIC: DBTCL_INFO *_NameToInfo __P((CONST char *));
+ * PUBLIC: DIGNCL_INFO *_NameToInfo __P((CONST char *));
  */
-DBTCL_INFO *
+DIGNCL_INFO *
 _NameToInfo(name)
 	CONST char *name;
 {
-	DBTCL_INFO *p;
+	DIGNCL_INFO *p;
 
 	LIST_FOREACH(p, &__db_infohead, entries)
 		if (strcmp(name, p->i_name) == 0)
@@ -119,11 +119,11 @@ _NameToInfo(name)
 }
 
 /*
- * PUBLIC: void  _SetInfoData __P((DBTCL_INFO *, void *));
+ * PUBLIC: void  _SetInfoData __P((DIGNCL_INFO *, void *));
  */
 void
 _SetInfoData(p, data)
-	DBTCL_INFO *p;
+	DIGNCL_INFO *p;
 	void *data;
 {
 	if (p == NULL)
@@ -133,11 +133,11 @@ _SetInfoData(p, data)
 }
 
 /*
- * PUBLIC: void  _DeleteInfo __P((DBTCL_INFO *));
+ * PUBLIC: void  _DeleteInfo __P((DIGNCL_INFO *));
  */
 void
 _DeleteInfo(p)
-	DBTCL_INFO *p;
+	DIGNCL_INFO *p;
 {
 	if (p == NULL)
 		return;
@@ -482,7 +482,7 @@ _ErrorFunc(dbenv, pfx, msg)
 	CONST char *pfx;
 	const char *msg;
 {
-	DBTCL_INFO *p;
+	DIGNCL_INFO *p;
 	Tcl_Interp *interp;
 	size_t size;
 	char *err;
@@ -522,13 +522,13 @@ _EventFunc(dbenv, event, info)
 {
 #define	TCLDB_EVENTITEMS 2	/* Event name and any info */
 #define	TCLDB_SENDEVENT 3	/* Event Tcl proc, env name, event objects. */
-	DBTCL_INFO *ip;
+	DIGNCL_INFO *ip;
 	Tcl_Interp *interp;
 	Tcl_Obj *event_o, *origobj;
 	Tcl_Obj *myobjv[TCLDB_EVENTITEMS], *objv[TCLDB_SENDEVENT];
 	int i, myobjc, result;
 
-	ip = (DBTCL_INFO *)dbenv->app_private;
+	ip = (DIGNCL_INFO *)dbenv->app_private;
 	interp = ip->i_interp;
 	if (ip->i_event == NULL)
 		return;

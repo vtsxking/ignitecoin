@@ -26,7 +26,7 @@ namespace BerkeleyDB {
         private SetThreadIDDelegate threadIDHandler;
         private SetThreadNameDelegate threadNameHandler;
         private string _pfx;
-        private DBTCopyDelegate CopyDelegate;
+        private DIGNCopyDelegate CopyDelegate;
         private BDB_ErrcallDelegate doErrFeedbackRef;
         private BDB_EnvFeedbackDelegate doFeedbackRef;
         private BDB_EventNotifyDelegate doNotifyRef;
@@ -114,7 +114,7 @@ namespace BerkeleyDB {
 
         private void initialize() {
             dbenv.api2_internal = this;
-            CopyDelegate = new DBTCopyDelegate(DatabaseEntry.dbt_usercopy);
+            CopyDelegate = new DIGNCopyDelegate(DatabaseEntry.dbt_usercopy);
             dbenv.set_usercopy(CopyDelegate);
         }
 

@@ -19,19 +19,19 @@ enum INFOTYPE {
     I_DB, I_DBC, I_ENV, I_LOCK, I_LOGC, I_MP, I_NDBM, I_PG, I_SEQ, I_TXN};
 
 #define	MAX_ID		8	/* Maximum number of sub-id's we need */
-#define	DBTCL_PREP	64	/* Size of txn_recover preplist */
+#define	DIGNCL_PREP	64	/* Size of txn_recover preplist */
 
-#define	DBTCL_DBM	1
-#define	DBTCL_NDBM	2
+#define	DIGNCL_DBM	1
+#define	DIGNCL_NDBM	2
 
-#define	DBTCL_GETCLOCK		0
-#define	DBTCL_GETLIMIT		1
-#define	DBTCL_GETREQ		2
+#define	DIGNCL_GETCLOCK		0
+#define	DIGNCL_GETLIMIT		1
+#define	DIGNCL_GETREQ		2
 
-#define	DBTCL_MUT_ALIGN	0
-#define	DBTCL_MUT_INCR	1
-#define	DBTCL_MUT_MAX	2
-#define	DBTCL_MUT_TAS	3
+#define	DIGNCL_MUT_ALIGN	0
+#define	DIGNCL_MUT_INCR	1
+#define	DIGNCL_MUT_MAX	2
+#define	DIGNCL_MUT_TAS	3
 
 /*
  * Why use a home grown package over the Tcl_Hash functions?
@@ -61,8 +61,8 @@ enum INFOTYPE {
  * noticeable way.  Should performance be impacted due to the size of the
  * info list, then perhaps it is time to revisit this decision.
  */
-typedef struct dbtcl_info {
-	LIST_ENTRY(dbtcl_info) entries;
+typedef struct digncl_info {
+	LIST_ENTRY(digncl_info) entries;
 	Tcl_Interp *i_interp;
 	char *i_name;
 	enum INFOTYPE i_type;
@@ -103,9 +103,9 @@ typedef struct dbtcl_info {
 	/* Environment ID for the i_rep_send callback. */
 	Tcl_Obj *i_rep_eid;
 
-	struct dbtcl_info *i_parent;
+	struct digncl_info *i_parent;
 	int	i_otherid[MAX_ID];
-} DBTCL_INFO;
+} DIGNCL_INFO;
 
 #define	i_anyp un.anyp
 #define	i_dbp un.dbp
@@ -135,12 +135,12 @@ typedef struct dbtcl_info {
 
 extern int __debug_on, __debug_print, __debug_stop, __debug_test;
 
-typedef struct dbtcl_global {
-	LIST_HEAD(infohead, dbtcl_info) g_infohead;
-} DBTCL_GLOBAL;
-#define	__db_infohead __dbtcl_global.g_infohead
+typedef struct digncl_global {
+	LIST_HEAD(infohead, digncl_info) g_infohead;
+} DIGNCL_GLOBAL;
+#define	__db_infohead __digncl_global.g_infohead
 
-extern DBTCL_GLOBAL __dbtcl_global;
+extern DIGNCL_GLOBAL __digncl_global;
 
 /*
  * Tcl_NewStringObj takes an "int" length argument, when the typical use is to

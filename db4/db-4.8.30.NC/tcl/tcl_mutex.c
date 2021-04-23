@@ -131,16 +131,16 @@ tcl_MutGet(interp, dbenv, op)
 	ret = 0;
 
 	switch (op) {
-	case DBTCL_MUT_ALIGN:
+	case DIGNCL_MUT_ALIGN:
 		ret = dbenv->mutex_get_align(dbenv, &val);
 		break;
-	case DBTCL_MUT_INCR:
+	case DIGNCL_MUT_INCR:
 		ret = dbenv->mutex_get_increment(dbenv, &val);
 		break;
-	case DBTCL_MUT_MAX:
+	case DIGNCL_MUT_MAX:
 		ret = dbenv->mutex_get_max(dbenv, &val);
 		break;
-	case DBTCL_MUT_TAS:
+	case DIGNCL_MUT_TAS:
 		ret = dbenv->mutex_get_tas_spins(dbenv, &val);
 		break;
 	default:
@@ -201,16 +201,16 @@ tcl_MutSet(interp, obj, dbenv, op)
 	if ((result = _GetUInt32(interp, obj, &val)) != TCL_OK)
 		return (result);
 	switch (op) {
-	case DBTCL_MUT_ALIGN:
+	case DIGNCL_MUT_ALIGN:
 		ret = dbenv->mutex_set_align(dbenv, val);
 		break;
-	case DBTCL_MUT_INCR:
+	case DIGNCL_MUT_INCR:
 		ret = dbenv->mutex_set_increment(dbenv, val);
 		break;
-	case DBTCL_MUT_MAX:
+	case DIGNCL_MUT_MAX:
 		ret = dbenv->mutex_set_max(dbenv, val);
 		break;
-	case DBTCL_MUT_TAS:
+	case DIGNCL_MUT_TAS:
 		ret = dbenv->mutex_set_tas_spins(dbenv, val);
 		break;
 	default:

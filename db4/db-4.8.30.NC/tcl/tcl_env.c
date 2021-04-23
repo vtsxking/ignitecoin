@@ -19,7 +19,7 @@
 /*
  * Prototypes for procedures defined later in this file:
  */
-static void _EnvInfoDelete __P((Tcl_Interp *, DBTCL_INFO *));
+static void _EnvInfoDelete __P((Tcl_Interp *, DIGNCL_INFO *));
 static int  env_DbRemove __P((Tcl_Interp *, int, Tcl_Obj * CONST*, DB_ENV *));
 static int  env_DbRename __P((Tcl_Interp *, int, Tcl_Obj * CONST*, DB_ENV *));
 static int  env_GetFlags __P((Tcl_Interp *, int, Tcl_Obj * CONST*, DB_ENV *));
@@ -256,7 +256,7 @@ env_Cmd(clientData, interp, objc, objv)
 		ENVTXN,
 		ENVTXNCKP
 	};
-	DBTCL_INFO *envip;
+	DIGNCL_INFO *envip;
 	DB_ENV *dbenv;
 	Tcl_Obj **listobjv, *myobjv[3], *res;
 	db_timeout_t timeout;
@@ -268,7 +268,7 @@ env_Cmd(clientData, interp, objc, objv)
 	const char *strval, **dirs;
 	char *strarg, newname[MSG_SIZE];
 #ifdef CONFIG_TEST
-	DBTCL_INFO *logcip;
+	DIGNCL_INFO *logcip;
 	DB_LOGC *logc;
 	u_int32_t lockid;
 	long newval, otherval;
@@ -480,16 +480,16 @@ env_Cmd(clientData, interp, objc, objv)
 		result = tcl_MutFree(interp, objc, objv, dbenv);
 		break;
 	case ENVMUTGETALIGN:
-		result = tcl_MutGet(interp, dbenv, DBTCL_MUT_ALIGN);
+		result = tcl_MutGet(interp, dbenv, DIGNCL_MUT_ALIGN);
 		break;
 	case ENVMUTGETINCR:
-		result = tcl_MutGet(interp, dbenv, DBTCL_MUT_INCR);
+		result = tcl_MutGet(interp, dbenv, DIGNCL_MUT_INCR);
 		break;
 	case ENVMUTGETMAX:
-		result = tcl_MutGet(interp, dbenv, DBTCL_MUT_MAX);
+		result = tcl_MutGet(interp, dbenv, DIGNCL_MUT_MAX);
 		break;
 	case ENVMUTGETTASSPINS:
-		result = tcl_MutGet(interp, dbenv, DBTCL_MUT_TAS);
+		result = tcl_MutGet(interp, dbenv, DIGNCL_MUT_TAS);
 		break;
 	case ENVMUTLOCK:
 		result = tcl_MutLock(interp, objc, objv, dbenv);
@@ -499,7 +499,7 @@ env_Cmd(clientData, interp, objc, objv)
 			Tcl_WrongNumArgs(interp, 2, objv, NULL);
 			return (TCL_ERROR);
 		}
-		result = tcl_MutSet(interp, objv[2], dbenv, DBTCL_MUT_TAS);
+		result = tcl_MutSet(interp, objv[2], dbenv, DIGNCL_MUT_TAS);
 		break;
 	case ENVMUTSTAT:
 		result = tcl_MutStat(interp, objc, objv, dbenv);
@@ -524,7 +524,7 @@ env_Cmd(clientData, interp, objc, objv)
 		result = tcl_RepFlush(interp, objc, objv, dbenv);
 		break;
 	case ENVREPGETCLOCKSKEW:
-		result = tcl_RepGetTwo(interp, dbenv, DBTCL_GETCLOCK);
+		result = tcl_RepGetTwo(interp, dbenv, DIGNCL_GETCLOCK);
 		break;
 	case ENVREPGETCONFIG:
 		/*
@@ -537,7 +537,7 @@ env_Cmd(clientData, interp, objc, objv)
 		result = tcl_RepGetConfig(interp, dbenv, objv[2]);
 		break;
 	case ENVREPGETLIMIT:
-		result = tcl_RepGetTwo(interp, dbenv, DBTCL_GETLIMIT);
+		result = tcl_RepGetTwo(interp, dbenv, DIGNCL_GETLIMIT);
 		break;
 	case ENVREPGETNSITES:
 		if (objc != 2) {
@@ -550,7 +550,7 @@ env_Cmd(clientData, interp, objc, objv)
 			res = Tcl_NewLongObj((long)value);
 		break;
 	case ENVREPGETREQUEST:
-		result = tcl_RepGetTwo(interp, dbenv, DBTCL_GETREQ);
+		result = tcl_RepGetTwo(interp, dbenv, DIGNCL_GETREQ);
 		break;
 	case ENVREPGETTIMEOUT:
 		/*
@@ -1022,7 +1022,7 @@ env_Cmd(clientData, interp, objc, objv)
 
 /*
  * PUBLIC: int tcl_EnvRemove __P((Tcl_Interp *, int, Tcl_Obj * CONST*,
- * PUBLIC:      DB_ENV *, DBTCL_INFO *));
+ * PUBLIC:      DB_ENV *, DIGNCL_INFO *));
  *
  * tcl_EnvRemove --
  */
@@ -1032,7 +1032,7 @@ tcl_EnvRemove(interp, objc, objv, dbenv, envip)
 	int objc;			/* How many arguments? */
 	Tcl_Obj *CONST objv[];		/* The argument objects */
 	DB_ENV *dbenv;			/* Env pointer */
-	DBTCL_INFO *envip;		/* Info pointer */
+	DIGNCL_INFO *envip;		/* Info pointer */
 {
 	static const char *envremopts[] = {
 #ifdef CONFIG_TEST
@@ -1269,9 +1269,9 @@ error:
 static void
 _EnvInfoDelete(interp, envip)
 	Tcl_Interp *interp;		/* Tcl Interpreter */
-	DBTCL_INFO *envip;		/* Info for env */
+	DIGNCL_INFO *envip;		/* Info for env */
 {
-	DBTCL_INFO *nextp, *p;
+	DIGNCL_INFO *nextp, *p;
 
 	/*
 	 * Before we can delete the environment info, we must close
@@ -1659,7 +1659,7 @@ err:
  *	Call DB_ENV->set_event_notify().
  *
  * PUBLIC: int tcl_EventNotify  __P((Tcl_Interp *, DB_ENV *, Tcl_Obj *,
- * PUBLIC:    DBTCL_INFO *));
+ * PUBLIC:    DIGNCL_INFO *));
  *
  *	Note that this normally can/should be achieved as an argument to
  * berkdb env, but we need to test changing the event function on
@@ -1670,7 +1670,7 @@ tcl_EventNotify(interp, dbenv, eobj, ip)
 	Tcl_Interp *interp;		/* Interpreter */
 	DB_ENV *dbenv;
 	Tcl_Obj *eobj;		/* The event proc */
-	DBTCL_INFO *ip;
+	DIGNCL_INFO *ip;
 {
 	int ret;
 
@@ -2602,7 +2602,7 @@ err:	if ((result = _ReturnSetup(interp, ret, DB_RETOK_STD(ret),
 }
 
 /*
- * PUBLIC: void tcl_EnvSetErrfile __P((Tcl_Interp *, DB_ENV *, DBTCL_INFO *,
+ * PUBLIC: void tcl_EnvSetErrfile __P((Tcl_Interp *, DB_ENV *, DIGNCL_INFO *,
  * PUBLIC:    char *));
  *
  * tcl_EnvSetErrfile --
@@ -2612,7 +2612,7 @@ void
 tcl_EnvSetErrfile(interp, dbenv, ip, errf)
 	Tcl_Interp *interp;		/* Interpreter */
 	DB_ENV *dbenv;			/* Database pointer */
-	DBTCL_INFO *ip;			/* Our internal info */
+	DIGNCL_INFO *ip;			/* Our internal info */
 	char *errf;
 {
 	COMPQUIET(interp, NULL);
@@ -2633,7 +2633,7 @@ tcl_EnvSetErrfile(interp, dbenv, ip, errf)
 }
 
 /*
- * PUBLIC: int tcl_EnvSetErrpfx __P((Tcl_Interp *, DB_ENV *, DBTCL_INFO *,
+ * PUBLIC: int tcl_EnvSetErrpfx __P((Tcl_Interp *, DB_ENV *, DIGNCL_INFO *,
  * PUBLIC:    char *));
  *
  * tcl_EnvSetErrpfx --
@@ -2643,7 +2643,7 @@ int
 tcl_EnvSetErrpfx(interp, dbenv, ip, pfx)
 	Tcl_Interp *interp;		/* Interpreter */
 	DB_ENV *dbenv;			/* Database pointer */
-	DBTCL_INFO *ip;			/* Our internal info */
+	DIGNCL_INFO *ip;			/* Our internal info */
 	char *pfx;
 {
 	int result, ret;

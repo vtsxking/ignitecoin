@@ -118,7 +118,7 @@ class libdb_csharpPINVOKE {
   public static extern BaseDatabase DB_api_internal_get(HandleRef jarg1);
 
   [DllImport(libname, EntryPoint="CSharp_DB_set_usercopy")]
-  public static extern int DB_set_usercopy(HandleRef jarg1, DBTCopyDelegate jarg2);
+  public static extern int DB_set_usercopy(HandleRef jarg1, DIGNCopyDelegate jarg2);
 
   [DllImport(libname, EntryPoint="CSharp_new_DB")]
   public static extern IntPtr new_DB(HandleRef jarg1, uint jarg2);
@@ -469,7 +469,7 @@ class libdb_csharpPINVOKE {
   public static extern DatabaseEnvironment DB_ENV_api2_internal_get(HandleRef jarg1);
 
   [DllImport(libname, EntryPoint="CSharp_DB_ENV_set_usercopy")]
-  public static extern int DB_ENV_set_usercopy(HandleRef jarg1, DBTCopyDelegate jarg2);
+  public static extern int DB_ENV_set_usercopy(HandleRef jarg1, DIGNCopyDelegate jarg2);
 
   [DllImport(libname, EntryPoint="CSharp_new_DB_ENV")]
   public static extern IntPtr new_DB_ENV(uint jarg1);

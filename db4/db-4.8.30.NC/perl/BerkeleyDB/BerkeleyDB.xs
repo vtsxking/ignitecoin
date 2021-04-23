@@ -1854,8 +1854,8 @@ my_db_open(
             SV* compress = NULL;
             SV* uncompress = NULL;
 
-            SetValue_sv(compress, "_btcompress1") ;
-            SetValue_sv(uncompress, "_btcompress2") ;
+            SetValue_sv(compress, "_igncompress1") ;
+            SetValue_sv(uncompress, "_igncompress2") ;
             if (compress)
             {
                 c = ;

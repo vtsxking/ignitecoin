@@ -27,9 +27,9 @@ namespace CsharpAPITest
 		private BTreeDatabase paramDB;
 		private EventWaitHandle signal;
 
-		private delegate void BTCursorMoveFuncDelegate(
+		private delegate void IGNCursorMoveFuncDelegate(
                     BTreeCursor cursor, LockingInfo lockingInfo);
-		private BTCursorMoveFuncDelegate btCursorFunc;
+		private IGNCursorMoveFuncDelegate btCursorFunc;
 
 		[TestFixtureSetUp]
 		public void RunBeforeTests()
@@ -972,7 +972,7 @@ namespace CsharpAPITest
 			testHome = testFixtureHome + "/" + testName;
 			Configuration.ClearDir(testHome);
 
-			btCursorFunc = new BTCursorMoveFuncDelegate(
+			btCursorFunc = new IGNCursorMoveFuncDelegate(
 			    MoveCursorToRecno);
 
 			// Move to a specified key and a key/data pair.
@@ -1010,7 +1010,7 @@ namespace CsharpAPITest
 			Configuration.ClearDir(testHome);
 
 			// Use MoveCursorToRecno() as its move function.
-			btCursorFunc = new BTCursorMoveFuncDelegate(
+			btCursorFunc = new IGNCursorMoveFuncDelegate(
 			    ReturnRecno);
 
 			// Move to a specified key and a key/data pair.

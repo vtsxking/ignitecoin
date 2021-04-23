@@ -532,7 +532,7 @@ void CoinControlDialog::updateLabels(WalletModel *model, QDialog* dialog)
     }
 
     // actually update labels
-    int nDisplayUnit = IgnitecoinUnits::BTC;
+    int nDisplayUnit = IgnitecoinUnits::IGNC;
     if (model && model->getOptionsModel())
         nDisplayUnit = model->getOptionsModel()->getDisplayUnit();
 

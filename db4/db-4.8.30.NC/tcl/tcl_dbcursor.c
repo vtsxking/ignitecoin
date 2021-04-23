@@ -59,7 +59,7 @@ dbc_Cmd(clientData, interp, objc, objv)
 		DBCPUT
 	};
 	DBC *dbc;
-	DBTCL_INFO *dbip;
+	DIGNCL_INFO *dbip;
 	int cmdindex, result, ret;
 
 	Tcl_ResetResult(interp);
@@ -181,7 +181,7 @@ tcl_DbcPut(interp, objc, objv, dbc)
 	};
 	DB *thisdbp;
 	DBT key, data;
-	DBTCL_INFO *dbcip, *dbip;
+	DIGNCL_INFO *dbcip, *dbip;
 	DBTYPE type;
 	Tcl_Obj **elemv, *res;
 	void *dtmp, *ktmp;
@@ -453,7 +453,7 @@ tcl_DbcGet(interp, objc, objv, dbc, ispget)
 	};
 	DB *thisdbp;
 	DBT key, data, pdata;
-	DBTCL_INFO *dbcip, *dbip;
+	DIGNCL_INFO *dbcip, *dbip;
 	DBTYPE ptype, type;
 	Tcl_Obj **elemv, *myobj, *retlist;
 	void *dtmp, *ktmp;
@@ -884,7 +884,7 @@ tcl_DbcCompare(interp, objc, objv, dbc)
 	DBC *dbc;			/* Cursor pointer */
 {
 	DBC *odbc;
-	DBTCL_INFO *dbcip, *dbip;
+	DIGNCL_INFO *dbcip, *dbip;
 	Tcl_Obj *res;
 	int cmp_res, result, ret;
 	char *arg, msg[MSG_SIZE];
@@ -957,7 +957,7 @@ tcl_DbcDup(interp, objc, objv, dbc)
 		DBCDUP_POS
 	};
 	DBC *newdbc;
-	DBTCL_INFO *dbcip, *newdbcip, *dbip;
+	DIGNCL_INFO *dbcip, *newdbcip, *dbip;
 	Tcl_Obj *res;
 	u_int32_t flag;
 	int i, optindex, result, ret;

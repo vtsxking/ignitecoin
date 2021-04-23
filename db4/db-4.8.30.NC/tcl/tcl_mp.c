@@ -21,13 +21,13 @@
 static int      mp_Cmd __P((ClientData, Tcl_Interp *, int, Tcl_Obj * CONST*));
 static int      pg_Cmd __P((ClientData, Tcl_Interp *, int, Tcl_Obj * CONST*));
 static int      tcl_MpGet __P((Tcl_Interp *, int, Tcl_Obj * CONST*,
-    DB_MPOOLFILE *, DBTCL_INFO *));
+    DB_MPOOLFILE *, DIGNCL_INFO *));
 static int      tcl_Pg __P((Tcl_Interp *, int, Tcl_Obj * CONST*,
-    void *, DB_MPOOLFILE *, DBTCL_INFO *));
+    void *, DB_MPOOLFILE *, DIGNCL_INFO *));
 static int      tcl_PgInit __P((Tcl_Interp *, int, Tcl_Obj * CONST*,
-    void *, DBTCL_INFO *));
+    void *, DIGNCL_INFO *));
 static int      tcl_PgIsset __P((Tcl_Interp *, int, Tcl_Obj * CONST*,
-    void *, DBTCL_INFO *));
+    void *, DIGNCL_INFO *));
 #endif
 
 /*
@@ -35,14 +35,14 @@ static int      tcl_PgIsset __P((Tcl_Interp *, int, Tcl_Obj * CONST*,
  *	Removes "sub" mp page info structures that are children
  *	of this mp.
  *
- * PUBLIC: void _MpInfoDelete __P((Tcl_Interp *, DBTCL_INFO *));
+ * PUBLIC: void _MpInfoDelete __P((Tcl_Interp *, DIGNCL_INFO *));
  */
 void
 _MpInfoDelete(interp, mpip)
 	Tcl_Interp *interp;		/* Interpreter */
-	DBTCL_INFO *mpip;		/* Info for mp */
+	DIGNCL_INFO *mpip;		/* Info for mp */
 {
-	DBTCL_INFO *nextp, *p;
+	DIGNCL_INFO *nextp, *p;
 
 	for (p = LIST_FIRST(&__db_infohead); p != NULL; p = nextp) {
 		/*
@@ -141,7 +141,7 @@ tcl_MpTrickle(interp, objc, objv, dbenv)
  * tcl_Mp --
  *
  * PUBLIC: int tcl_Mp __P((Tcl_Interp *, int,
- * PUBLIC:    Tcl_Obj * CONST*, DB_ENV *, DBTCL_INFO *));
+ * PUBLIC:    Tcl_Obj * CONST*, DB_ENV *, DIGNCL_INFO *));
  */
 int
 tcl_Mp(interp, objc, objv, dbenv, envip)
@@ -149,7 +149,7 @@ tcl_Mp(interp, objc, objv, dbenv, envip)
 	int objc;			/* How many arguments? */
 	Tcl_Obj *CONST objv[];		/* The argument objects */
 	DB_ENV *dbenv;			/* Environment pointer */
-	DBTCL_INFO *envip;		/* Info pointer */
+	DIGNCL_INFO *envip;		/* Info pointer */
 {
 	static const char *mpopts[] = {
 		"-create",
@@ -168,7 +168,7 @@ tcl_Mp(interp, objc, objv, dbenv, envip)
 		MPPAGE,
 		MPRDONLY
 	};
-	DBTCL_INFO *ip;
+	DIGNCL_INFO *ip;
 	DB_MPOOLFILE *mpf;
 	Tcl_Obj *res;
 	u_int32_t flag;
@@ -460,7 +460,7 @@ mp_Cmd(clientData, interp, objc, objv)
 	};
 	DB_MPOOLFILE *mp;
 	int cmdindex, ftype, length, result, ret;
-	DBTCL_INFO *mpip;
+	DIGNCL_INFO *mpip;
 	Tcl_Obj *res;
 	char *obj_name;
 	u_int32_t value;
@@ -589,7 +589,7 @@ tcl_MpGet(interp, objc, objv, mp, mpip)
 	int objc;			/* How many arguments? */
 	Tcl_Obj *CONST objv[];		/* The argument objects */
 	DB_MPOOLFILE *mp;		/* mp pointer */
-	DBTCL_INFO *mpip;		/* mp info pointer */
+	DIGNCL_INFO *mpip;		/* mp info pointer */
 {
 	static const char *mpget[] = {
 		"-create",
@@ -607,7 +607,7 @@ tcl_MpGet(interp, objc, objv, mp, mpip)
 		MPGET_TXN
 	};
 
-	DBTCL_INFO *ip;
+	DIGNCL_INFO *ip;
 	Tcl_Obj *res;
 	DB_TXN *txn;
 	db_pgno_t pgno;
@@ -745,7 +745,7 @@ pg_Cmd(clientData, interp, objc, objv)
 	int cmdindex, length, result;
 	char *obj_name;
 	void *page;
-	DBTCL_INFO *pgip;
+	DIGNCL_INFO *pgip;
 	Tcl_Obj *res;
 
 	Tcl_ResetResult(interp);
@@ -811,7 +811,7 @@ tcl_Pg(interp, objc, objv, page, mp, pgip)
 	Tcl_Obj *CONST objv[];		/* The argument objects */
 	void *page;			/* Page pointer */
 	DB_MPOOLFILE *mp;		/* Mpool pointer */
-	DBTCL_INFO *pgip;		/* Info pointer */
+	DIGNCL_INFO *pgip;		/* Info pointer */
 {
 	static const char *pgopt[] = {
 		"-discard",
@@ -854,7 +854,7 @@ tcl_PgInit(interp, objc, objv, page, pgip)
 	int objc;			/* How many arguments? */
 	Tcl_Obj *CONST objv[];		/* The argument objects */
 	void *page;			/* Page pointer */
-	DBTCL_INFO *pgip;		/* Info pointer */
+	DIGNCL_INFO *pgip;		/* Info pointer */
 {
 	Tcl_Obj *res;
 	long *p, *endp, newval;
@@ -891,7 +891,7 @@ tcl_PgIsset(interp, objc, objv, page, pgip)
 	int objc;			/* How many arguments? */
 	Tcl_Obj *CONST objv[];		/* The argument objects */
 	void *page;			/* Page pointer */
-	DBTCL_INFO *pgip;		/* Info pointer */
+	DIGNCL_INFO *pgip;		/* Info pointer */
 {
 	Tcl_Obj *res;
 	long *p, *endp, newval;

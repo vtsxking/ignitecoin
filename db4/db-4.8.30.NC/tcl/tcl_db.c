@@ -22,7 +22,7 @@
 static int	tcl_DbAssociate __P((Tcl_Interp *,
     int, Tcl_Obj * CONST*, DB *));
 static int	tcl_DbClose __P((Tcl_Interp *,
-    int, Tcl_Obj * CONST*, DB *, DBTCL_INFO *));
+    int, Tcl_Obj * CONST*, DB *, DIGNCL_INFO *));
 static int	tcl_DbDelete __P((Tcl_Interp *, int, Tcl_Obj * CONST*, DB *));
 static int	tcl_DbGet __P((Tcl_Interp *, int, Tcl_Obj * CONST*, DB *, int));
 #ifdef CONFIG_TEST
@@ -50,14 +50,14 @@ static int	tcl_second_call __P((DB *, const DBT *, const DBT *, DBT *));
 /*
  * _DbInfoDelete --
  *
- * PUBLIC: void _DbInfoDelete __P((Tcl_Interp *, DBTCL_INFO *));
+ * PUBLIC: void _DbInfoDelete __P((Tcl_Interp *, DIGNCL_INFO *));
  */
 void
 _DbInfoDelete(interp, dbip)
 	Tcl_Interp *interp;
-	DBTCL_INFO *dbip;
+	DIGNCL_INFO *dbip;
 {
-	DBTCL_INFO *nextp, *p;
+	DIGNCL_INFO *nextp, *p;
 	/*
 	 * First we have to close any open cursors.  Then we close
 	 * our db.
@@ -178,7 +178,7 @@ db_Cmd(clientData, interp, objc, objv)
 	DB *dbp;
 	DB_ENV *dbenv;
 	DBC *dbc;
-	DBTCL_INFO *dbip, *ip;
+	DIGNCL_INFO *dbip, *ip;
 	DBTYPE type;
 	Tcl_Obj *res, *myobjv[3];
 	int cmdindex, intval, ncache, result, ret;
@@ -742,7 +742,7 @@ tcl_DbClose(interp, objc, objv, dbp, dbip)
 	int objc;			/* How many arguments? */
 	Tcl_Obj *CONST objv[];		/* The argument objects */
 	DB *dbp;			/* Database pointer */
-	DBTCL_INFO *dbip;		/* Info pointer */
+	DIGNCL_INFO *dbip;		/* Info pointer */
 {
 	static const char *dbclose[] = {
 		"-nosync", "--", NULL
@@ -2267,7 +2267,7 @@ tcl_DbAssociate(interp, objc, objv, dbp)
 	};
 	DB *sdbp;
 	DB_TXN *txn;
-	DBTCL_INFO *sdbip;
+	DIGNCL_INFO *sdbip;
 	int i, optindex, result, ret;
 	char *arg, msg[MSG_SIZE];
 	u_int32_t flag;
@@ -2367,7 +2367,7 @@ tcl_DbAssociate(interp, objc, objv, dbp)
 	 * info struct;  we may have multiple secondaries with different
 	 * callbacks.
 	 */
-	sdbip = (DBTCL_INFO *)sdbp->api_internal;
+	sdbip = (DIGNCL_INFO *)sdbp->api_internal;
 
 #ifdef CONFIG_TEST
 	if (i != objc - 1 && RPC_ON(dbp->dbenv)) {
@@ -2443,7 +2443,7 @@ tcl_second_call(dbp, pkey, data, skey)
 	DBT *skey;
 {
 	DBT *tskey;
-	DBTCL_INFO *ip;
+	DIGNCL_INFO *ip;
 	Tcl_Interp *interp;
 	Tcl_Obj *pobj, *dobj, *objv[3], *robj, **skeylist;
 	size_t len;
@@ -2451,7 +2451,7 @@ tcl_second_call(dbp, pkey, data, skey)
 	u_int32_t i, nskeys;
 	void *retbuf, *databuf;
 
-	ip = (DBTCL_INFO *)dbp->api_internal;
+	ip = (DIGNCL_INFO *)dbp->api_internal;
 	interp = ip->i_interp;
 	objv[0] = ip->i_second_call;
 
@@ -3219,7 +3219,7 @@ tcl_DbCompact(interp, objc, objv, dbp)
 		DBREORG_TIMEOUT,
 		DBREORG_TXN
 	};
-	DBTCL_INFO *ip;
+	DIGNCL_INFO *ip;
 	DBT *key, end, start, stop;
 	DBTYPE type;
 	DB_TXN *txn;
@@ -3237,7 +3237,7 @@ tcl_DbCompact(interp, objc, objv, dbp)
 	memset(&start, 0, sizeof(start));
 	memset(&stop, 0, sizeof(stop));
 	memset(&end, 0, sizeof(end));
-	ip = (DBTCL_INFO *)dbp->api_internal;
+	ip = (DIGNCL_INFO *)dbp->api_internal;
 	fillfactor = pages = timeout = 0;
 
 	i = 2;
@@ -3415,23 +3415,23 @@ tcl_DbCompactStat(interp, objc, objv, dbp)
 	Tcl_Obj *CONST objv[];		/* The argument objects */
 	DB *dbp;			/* Database pointer */
 {
-	DBTCL_INFO *ip;
+	DIGNCL_INFO *ip;
 
 	COMPQUIET(objc, 0);
 	COMPQUIET(objv, NULL);
 
-	ip = (DBTCL_INFO *)dbp->api_internal;
+	ip = (DIGNCL_INFO *)dbp->api_internal;
 
 	return (tcl_CompactStat(interp, ip));
 }
 
 /*
- * PUBLIC: int tcl_CompactStat __P((Tcl_Interp *, DBTCL_INFO *));
+ * PUBLIC: int tcl_CompactStat __P((Tcl_Interp *, DIGNCL_INFO *));
  */
 int
 tcl_CompactStat(interp, ip)
 	Tcl_Interp *interp;		/* Interpreter */
-	DBTCL_INFO *ip;
+	DIGNCL_INFO *ip;
 {
 	DB_COMPACT *rp;
 	Tcl_Obj *res;

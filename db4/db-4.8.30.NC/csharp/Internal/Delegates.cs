@@ -37,5 +37,5 @@ namespace BerkeleyDB.Internal {
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     internal delegate string BDB_ThreadNameDelegate(IntPtr dbenv, int pid, uint tid, ref string buf);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    internal delegate int DBTCopyDelegate(IntPtr dbt, uint offset, IntPtr buf, uint sz, uint flags);
+    internal delegate int DIGNCopyDelegate(IntPtr dbt, uint offset, IntPtr buf, uint sz, uint flags);
 }

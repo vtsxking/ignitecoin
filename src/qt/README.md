@@ -60,7 +60,7 @@ Represents the view to a single wallet.
 
 * UI elements like IgnitecoinAmountField, which inherit from QWidget.
 * `ignitecoinstrings.cpp`: automatically generated
-* `ignitecoinunits.(h/cpp)`: BTC / mBTC / etc handling
+* `ignitecoinunits.(h/cpp)`: IGNC / mIGNC / etc handling
 * `callback.h`
 * `guiconstants.h`: UI colors, app name, etc
 * `guiutil.h`: several helper functions

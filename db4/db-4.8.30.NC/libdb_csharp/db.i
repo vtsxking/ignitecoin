@@ -365,8 +365,8 @@ typedef struct __db
 	void *api_internal;
 	
 %extend {
-	%typemap(cstype) int (*dbt_usercopy)(DBT*, u_int32_t, void *, u_int32_t, u_int32_t) "DBTCopyDelegate"
-	%typemap(imtype) int (*dbt_usercopy)(DBT*, u_int32_t, void *, u_int32_t, u_int32_t) "DBTCopyDelegate"
+	%typemap(cstype) int (*dbt_usercopy)(DBT*, u_int32_t, void *, u_int32_t, u_int32_t) "DIGNCopyDelegate"
+	%typemap(imtype) int (*dbt_usercopy)(DBT*, u_int32_t, void *, u_int32_t, u_int32_t) "DIGNCopyDelegate"
 	%typemap(csin) int (*dbt_usercopy)(DBT*, u_int32_t, void *, u_int32_t, u_int32_t) "dbt_usercopy"
 	int set_usercopy(int (*dbt_usercopy)(DBT *, u_int32_t, void *, u_int32_t, u_int32_t)) {
 		self->env->dbt_usercopy = dbt_usercopy;
@@ -1022,8 +1022,8 @@ typedef struct __dbenv
 	void *api2_internal;
 	
 %extend {
-	%typemap(cstype) int (*dbt_usercopy)(DBT*, u_int32_t, void *, u_int32_t, u_int32_t) "DBTCopyDelegate"
-	%typemap(imtype) int (*dbt_usercopy)(DBT*, u_int32_t, void *, u_int32_t, u_int32_t) "DBTCopyDelegate"
+	%typemap(cstype) int (*dbt_usercopy)(DBT*, u_int32_t, void *, u_int32_t, u_int32_t) "DIGNCopyDelegate"
+	%typemap(imtype) int (*dbt_usercopy)(DBT*, u_int32_t, void *, u_int32_t, u_int32_t) "DIGNCopyDelegate"
 	%typemap(csin) int (*dbt_usercopy)(DBT*, u_int32_t, void *, u_int32_t, u_int32_t) "dbt_usercopy"
 	int set_usercopy(int (*dbt_usercopy)(DBT *, u_int32_t, void *, u_int32_t, u_int32_t)) {
 		self->env->dbt_usercopy = dbt_usercopy;

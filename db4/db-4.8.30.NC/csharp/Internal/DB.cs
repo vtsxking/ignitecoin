@@ -81,7 +81,7 @@ internal class DB : IDisposable {
 	
   }
 
-  internal int set_usercopy(DBTCopyDelegate dbt_usercopy) {
+  internal int set_usercopy(DIGNCopyDelegate dbt_usercopy) {
 		int ret;
 		ret = libdb_csharpPINVOKE.DB_set_usercopy(swigCPtr, dbt_usercopy);
 		DatabaseException.ThrowException(ret);

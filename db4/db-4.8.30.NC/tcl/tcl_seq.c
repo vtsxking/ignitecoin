@@ -20,11 +20,11 @@
  * Prototypes for procedures defined later in this file:
  */
 static int	tcl_SeqClose __P((Tcl_Interp *,
-    int, Tcl_Obj * CONST*, DB_SEQUENCE *, DBTCL_INFO *));
+    int, Tcl_Obj * CONST*, DB_SEQUENCE *, DIGNCL_INFO *));
 static int	tcl_SeqGet __P((Tcl_Interp *,
     int, Tcl_Obj * CONST*, DB_SEQUENCE *));
 static int	tcl_SeqRemove __P((Tcl_Interp *,
-    int, Tcl_Obj * CONST*, DB_SEQUENCE *, DBTCL_INFO *));
+    int, Tcl_Obj * CONST*, DB_SEQUENCE *, DIGNCL_INFO *));
 static int	tcl_SeqStat __P((Tcl_Interp *,
     int, Tcl_Obj * CONST*, DB_SEQUENCE *));
 static int	tcl_SeqGetFlags __P((Tcl_Interp *,
@@ -69,7 +69,7 @@ seq_Cmd(clientData, interp, objc, objv)
 	};
 	DB *dbp;
 	DBT key;
-	DBTCL_INFO *dbip, *ip;
+	DIGNCL_INFO *dbip, *ip;
 	DB_SEQUENCE *seq;
 	Tcl_Obj *myobjv[2], *res;
 	db_seq_t min, max;
@@ -257,7 +257,7 @@ tcl_SeqClose(interp, objc, objv, seq, ip)
 	int objc;			/* How many arguments? */
 	Tcl_Obj *CONST objv[];		/* The argument objects */
 	DB_SEQUENCE *seq;		/* Database pointer */
-	DBTCL_INFO *ip;			/* Info pointer */
+	DIGNCL_INFO *ip;			/* Info pointer */
 {
 	int result, ret;
 
@@ -381,7 +381,7 @@ tcl_SeqRemove(interp, objc, objv, seq, ip)
 	int objc;			/* How many arguments? */
 	Tcl_Obj *CONST objv[];		/* The argument objects */
 	DB_SEQUENCE *seq;		/* Sequence pointer */
-	DBTCL_INFO *ip;			/* Info pointer */
+	DIGNCL_INFO *ip;			/* Info pointer */
 {
 	static const char *seqgetopts[] = {
 		"-nosync",

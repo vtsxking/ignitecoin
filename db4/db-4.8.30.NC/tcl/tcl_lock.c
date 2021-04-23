@@ -357,7 +357,7 @@ lock_Cmd(clientData, interp, objc, objv)
 	};
 	DB_ENV *dbenv;
 	DB_LOCK *lock;
-	DBTCL_INFO *lkip;
+	DIGNCL_INFO *lkip;
 	int cmdindex, result, ret;
 
 	Tcl_ResetResult(interp);
@@ -687,7 +687,7 @@ _LockPutInfo(interp, op, lock, lockid, objp)
 	u_int32_t lockid;
 	DBT *objp;
 {
-	DBTCL_INFO *p, *nextp;
+	DIGNCL_INFO *p, *nextp;
 	int found;
 
 	for (p = LIST_FIRST(&__db_infohead); p != NULL; p = nextp) {
@@ -716,7 +716,7 @@ _GetThisLock(interp, dbenv, lockid, flag, objp, mode, newname)
 	db_lockmode_t mode;		/* Lock mode */
 	char *newname;			/* New command name */
 {
-	DBTCL_INFO *envip, *ip;
+	DIGNCL_INFO *envip, *ip;
 	DB_LOCK *lock;
 	int result, ret;
 

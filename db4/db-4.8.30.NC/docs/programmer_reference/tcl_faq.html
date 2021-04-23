@@ -65,10 +65,10 @@ try reconfiguring and reinstalling Tcl.</p>
 not search for shared libraries named the way the Tcl installation names
 them, or are searching for a different kind of library than those in
 your Tcl installation.  For example, Linux systems often require linking
-"libtcl.a" to "libtcl#.#.a", whereas AIX systems often require adding the
+"liigncl.a" to "liigncl#.#.a", whereas AIX systems often require adding the
 "-brtl" flag to the linker.  A simpler solution that almost always works
-on all systems is to create a link from "libtcl.#.#.a" or "libtcl.so"
-(or whatever you happen to have) to "libtcl.a" and reconfigure.</p>
+on all systems is to create a link from "liigncl.#.#.a" or "liigncl.so"
+(or whatever you happen to have) to "liigncl.a" and reconfigure.</p>
           </li>
           <li>
             <span class="bold">
@@ -79,7 +79,7 @@ created by the Tcl installation does not work properly under AIX, and
 you may have to modify values in the tclConfig.sh file to in order to
 load the Berkeley DB library into Tcl.  Specifically, the TCL_LIB_SPEC
 variable should contain sufficient linker flags to find and link against
-the installed libtcl library.  In some circumstances, the tclConfig.sh
+the installed liigncl library.  In some circumstances, the tclConfig.sh
 file built by Tcl does not.</p>
           </li>
         </ol>

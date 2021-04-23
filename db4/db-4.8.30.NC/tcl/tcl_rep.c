@@ -122,13 +122,13 @@ tcl_RepGetTwo(interp, dbenv, op)
 	ret = 0;
 	val1 = val2 = 0;
 	switch (op) {
-	case DBTCL_GETCLOCK:
+	case DIGNCL_GETCLOCK:
 		ret = dbenv->rep_get_clockskew(dbenv, &val1, &val2);
 		break;
-	case DBTCL_GETLIMIT:
+	case DIGNCL_GETLIMIT:
 		ret = dbenv->rep_get_limit(dbenv, &val1, &val2);
 		break;
-	case DBTCL_GETREQ:
+	case DIGNCL_GETREQ:
 		ret = dbenv->rep_get_request(dbenv, &val1, &val2);
 		break;
 	default:
@@ -614,7 +614,7 @@ tcl_RepNoarchiveTimeout(interp, dbenv)
  *	Call DB_ENV->rep_set_transport().
  *
  * PUBLIC: int tcl_RepTransport  __P((Tcl_Interp *, int, Tcl_Obj * CONST *,
- * PUBLIC:    DB_ENV *, DBTCL_INFO *));
+ * PUBLIC:    DB_ENV *, DIGNCL_INFO *));
  *
  *	Note that this normally can/should be achieved as an argument to
  * berkdb env, but we need to test changing the transport function on
@@ -626,7 +626,7 @@ tcl_RepTransport(interp, objc, objv, dbenv, ip)
 	int objc;			/* How many arguments? */
 	Tcl_Obj *CONST objv[];		/* The argument objects */
 	DB_ENV *dbenv;
-	DBTCL_INFO *ip;
+	DIGNCL_INFO *ip;
 {
 	int intarg, result, ret;
 

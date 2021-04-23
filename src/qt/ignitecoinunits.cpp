@@ -17,9 +17,9 @@ IgnitecoinUnits::IgnitecoinUnits(QObject *parent):
 QList<IgnitecoinUnits::Unit> IgnitecoinUnits::availableUnits()
 {
     QList<IgnitecoinUnits::Unit> unitlist;
-    unitlist.append(BTC);
-    unitlist.append(mBTC);
-    unitlist.append(uBTC);
+    unitlist.append(IGNC);
+    unitlist.append(mIGNC);
+    unitlist.append(uIGNC);
     unitlist.append(SAT);
     return unitlist;
 }
@@ -28,9 +28,9 @@ bool IgnitecoinUnits::valid(int unit)
 {
     switch(unit)
     {
-    case BTC:
-    case mBTC:
-    case uBTC:
+    case IGNC:
+    case mIGNC:
+    case uIGNC:
     case SAT:
         return true;
     default:
@@ -42,9 +42,9 @@ QString IgnitecoinUnits::longName(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("IGNC");
-    case mBTC: return QString("mIGNC");
-    case uBTC: return QString::fromUtf8("µIGNC (sparks)");
+    case IGNC: return QString("IGNC");
+    case mIGNC: return QString("mIGNC");
+    case uIGNC: return QString::fromUtf8("µIGNC (sparks)");
     case SAT: return QString("Ignitero (igntro)");
     default: return QString("???");
     }
@@ -54,7 +54,7 @@ QString IgnitecoinUnits::shortName(int unit)
 {
     switch(unit)
     {
-    case uBTC: return QString::fromUtf8("sparks");
+    case uIGNC: return QString::fromUtf8("sparks");
     case SAT: return QString("igntro");
     default: return longName(unit);
     }
@@ -64,9 +64,9 @@ QString IgnitecoinUnits::description(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("Ignitecoins");
-    case mBTC: return QString("Milli-Ignitecoins (1 / 1" THIN_SP_UTF8 "000)");
-    case uBTC: return QString("Micro-Ignitecoins (sparks) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case IGNC: return QString("Ignitecoins");
+    case mIGNC: return QString("Milli-Ignitecoins (1 / 1" THIN_SP_UTF8 "000)");
+    case uIGNC: return QString("Micro-Ignitecoins (sparks) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     case SAT: return QString("Ignitero (igntro) (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
@@ -76,9 +76,9 @@ qint64 IgnitecoinUnits::factor(int unit)
 {
     switch(unit)
     {
-    case BTC: return 100000000;
-    case mBTC: return 100000;
-    case uBTC: return 100;
+    case IGNC: return 100000000;
+    case mIGNC: return 100000;
+    case uIGNC: return 100;
     case SAT: return 1;
     default: return 100000000;
     }
@@ -88,9 +88,9 @@ int IgnitecoinUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case BTC: return 8;
-    case mBTC: return 5;
-    case uBTC: return 2;
+    case IGNC: return 8;
+    case mIGNC: return 5;
+    case uIGNC: return 2;
     case SAT: return 0;
     default: return 0;
     }

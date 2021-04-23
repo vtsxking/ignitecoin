@@ -150,7 +150,7 @@ bool parseIgnitecoinURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if(!IgnitecoinUnits::parse(IgnitecoinUnits::BTC, i->second, &rv.amount))
+                if(!IgnitecoinUnits::parse(IgnitecoinUnits::IGNC, i->second, &rv.amount))
                 {
                     return false;
                 }
@@ -181,7 +181,7 @@ QString formatIgnitecoinURI(const SendCoinsRecipient &info)
 
     if (info.amount)
     {
-        ret += QString("?amount=%1").arg(IgnitecoinUnits::format(IgnitecoinUnits::BTC, info.amount, false, IgnitecoinUnits::separatorNever));
+        ret += QString("?amount=%1").arg(IgnitecoinUnits::format(IgnitecoinUnits::IGNC, info.amount, false, IgnitecoinUnits::separatorNever));
         paramCount++;
     }
 
