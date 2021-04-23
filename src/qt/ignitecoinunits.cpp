@@ -42,10 +42,10 @@ QString IgnitecoinUnits::longName(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("BTC");
-    case mBTC: return QString("mBTC");
-    case uBTC: return QString::fromUtf8("µBTC (bits)");
-    case SAT: return QString("Satoshi (sat)");
+    case BTC: return QString("IGNC");
+    case mBTC: return QString("mIGNC");
+    case uBTC: return QString::fromUtf8("µIGNC (sparks)");
+    case SAT: return QString("Ignitero (igntro)");
     default: return QString("???");
     }
 }
@@ -54,8 +54,8 @@ QString IgnitecoinUnits::shortName(int unit)
 {
     switch(unit)
     {
-    case uBTC: return QString::fromUtf8("bits");
-    case SAT: return QString("sat");
+    case uBTC: return QString::fromUtf8("sparks");
+    case SAT: return QString("igntro");
     default: return longName(unit);
     }
 }
@@ -66,8 +66,8 @@ QString IgnitecoinUnits::description(int unit)
     {
     case BTC: return QString("Ignitecoins");
     case mBTC: return QString("Milli-Ignitecoins (1 / 1" THIN_SP_UTF8 "000)");
-    case uBTC: return QString("Micro-Ignitecoins (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-    case SAT: return QString("Satoshi (sat) (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case uBTC: return QString("Micro-Ignitecoins (sparks) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case SAT: return QString("Ignitero (igntro) (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
 }
